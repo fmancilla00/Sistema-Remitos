@@ -1,0 +1,33 @@
+
+.Material__container{
+    background-color: black;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+.Material__form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.Material__cantidad{
+    width: 3rem;
+    overflow: hidden;
+    border-radius: 5px;
+    padding: 2px;
+    font-size: inherit;
+}
+
+
+.Material__descripcion{
+    width: 400px;
+    border-radius: 5px;
+    font-size: inherit;
+    padding: 2px;
+}

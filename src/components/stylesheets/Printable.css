@@ -1,0 +1,147 @@
+
+.Sheet{
+    position: absolute;
+    background-color: white;
+    width: 21cm;
+    height: 29.7cm;
+    margin: 0;
+    top: 0;
+    left: 0;
+    font-size: 14px;
+}
+
+.Sheet2{
+    position: absolute;
+    background-color: white;
+    width: 21cm;
+    height: 59.4cm;
+    margin: 0;
+    top: 0;
+    left: 0;
+}
+
+.Copia{
+    position: absolute;
+    background-color: white;
+    width: 21cm;
+    height: 29.7cm;
+    margin: 0;
+    top: 29.7cm;
+    left: 0;
+}
+
+.Encabezado{
+    position: absolute;
+    left: 15mm;
+    top: 15mm;
+    width: 180mm;
+    height: 95mm;
+    display: flex;
+    flex-direction: column;
+    gap: 1mm;
+}
+
+.Emisor{
+    height: 45mm;
+    width: 100%;
+    position: relative;
+}
+
+.Receptor{
+    height: 23mm;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 25mm;
+    gap: 1.5mm;
+}
+
+.Info{
+    height: 15mm;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Fecha{
+    position: absolute;
+    top: 25mm;
+    left: 135mm;
+}
+
+.Razon{
+    height: 5mm;
+}
+
+.Localidad{
+    height: 5mm;
+}
+
+
+.TelDom{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 5mm;
+    position: relative;
+}
+
+.Telefono{
+    position: absolute;
+    right: 20mm;
+    left: 115mm;
+}
+
+.Info-1{
+    padding-left: 25mm;
+    display: flex;
+    position: relative;
+}
+
+.CUIT{
+    position: absolute;
+    left: 122mm;
+    max-width: 250px;
+    overflow: hidden;
+}
+
+.Info-2{
+    display: flex;
+    position: relative;
+    padding-left: 43mm;
+}
+
+.OC{
+    position: absolute;
+    left: 122mm;
+}
+
+.Materiales{
+    position: absolute;
+    top: 105mm;
+    left: 15mm;
+    width: 180mm;
+    border-collapse: collapse;
+}
+
+.Item{
+    max-width: 180mm;
+}
+
+.Cantidad{
+    width: 20mm;
+    text-align: center;
+    overflow: hidden;
+}
+
+.DescCode{
+    padding-left: 5mm;
+    overflow: hidden;
+    word-break: break-all;
+}
+
