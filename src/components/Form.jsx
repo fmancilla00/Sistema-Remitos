@@ -8,8 +8,10 @@ import { useForm } from 'react-hook-form';
 import Encabezado from './Encabezado';
 import Printable from './Printable';
 import { Link } from 'react-router-dom';
-
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import { html2pdf } from "html2pdf.js";
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 
 export default function Form({ setElementos}) {
@@ -38,12 +40,13 @@ export default function Form({ setElementos}) {
     setMaterials(newMats);
 
   }
-  
+
+
   const verForm = data => {
     data.head.data = infoHead;
     console.log(data);
     setDatos(data);
-    setImprimir(true)
+    setImprimir(true);
   }
   const { register, handleSubmit, unregister, reset, setValue, getValues, watch } = useForm(); 
 
