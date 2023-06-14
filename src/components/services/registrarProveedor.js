@@ -6,13 +6,6 @@ export const registrarProovedor = (prov) => {
     }
     let objetoProvs = JSON.parse(proveedores);
     objetoProvs[nombre] = prov;
-    const arrayDirs = objetoProvs[nombre]['dir'].split(';')
-    arrayDirs.forEach(dir => { dir.trim() })
-    objetoProvs[nombre]['dir'] = arrayDirs;
-
-    const arrayLocs = objetoProvs[nombre]['loc'].split(';')
-    arrayLocs.forEach(dir => { dir.trim() })
-    objetoProvs[nombre]['loc'] = arrayLocs;
     localStorage.setItem('proveedores', JSON.stringify(objetoProvs));
 }
 

@@ -23,7 +23,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div className="container my-10 mx-auto bg-slate-200">
+    <div className="bg-slate-200">
       <RouterProvider router={router}/>
     </div>
   )

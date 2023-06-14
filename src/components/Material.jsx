@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { FiEdit3, FiSave } from "react-icons/fi"
 import { RxCross1 } from "react-icons/rx";
 import { subTotal } from './services/calculos';
+import { RxCrossCircled } from "react-icons/rx";
 
 
 
@@ -18,7 +19,6 @@ export default function Material({ident, handleDelete, reg, setValue, getValues,
   
   const handleCodeBlur = () => {
     const code = getValues(`${ident}.codigo`)
-    console.log(code);
     if (code === '') {
       setEditable(true);
       return
@@ -65,20 +65,34 @@ export default function Material({ident, handleDelete, reg, setValue, getValues,
 
 
   return (
-    <div className=' flex px-36 items-center justify-between gap-2' autoComplete='off' onSubmit={verSubmit}>
-      <input {...reg(`${ident}.codigo`)} onBlur={handleCodeBlur} placeholder='Código' className='w-24 p-1 m-1 text-sm rounded-sm' type="text" />
-      <input  {...reg(`${ident}.descripcion`)} placeholder='Descripción' className='w-96 p-1 m-1 rounded-sm text-sm' type="text" readOnly={!editable} tabIndex={(localStorage.getItem(codeState) === null) ? undefined : -1} />
-      {codeState !== undefined ?
-        <span  className=' text-lg cursor-pointer inline-block' onClick={editDesc} tabIndex="-1">
-          {editable ? <FiSave/> : <FiEdit3/>}
-        </span>
-        : '----'
-      }
-      <input  {...reg(`${ident}.cantidad`)} onBlur={calcularTotal} className='p-1 m-1 w-14 rounded-sm text-sm' type="number"/>
-      <input  {...reg(`${ident}.precio`)} onBlur={calcularTotal} className='p-1 m-1 w-24 rounded-sm text-sm' type="number"/>
-      <span className=' w-32 overflow-hidden text-start justify-self-end text-sm' >{
-        cant && price && subTotal(cant, price)}</span>
-      <span className=' w-4  inline-block' onClick={() => { handleDelete(ident) }}><RxCross1 /></span>
-    </div>  
+    <tr className='bg-slate-300 border-separate ' autoComplete='off' onSubmit={verSubmit}>
+      <td>
+        <input  {...reg(`${ident}.cantidad`)}  placeholder="Cant." onBlur={calcularTotal} className=' text-center p-1 m-1 w-14 rounded-sm text-sm' type="number"/>
+      </td>
+
+      <td className=''>
+        <input {...reg(`${ident}.codigo`)} onBlur={handleCodeBlur} placeholder='Código' className='w-24 p-1 m-1 text-sm rounded-sm' type="text" />
+      </td>
+      <td className=''>
+        <input  {...reg(`${ident}.descripcion`)} placeholder='Descripción' className='w-96 p-1 m-1 rounded-sm text-sm' type="text" readOnly={!editable} tabIndex={(localStorage.getItem(codeState) === null) ? undefined : -1} />
+      </td>
+
+      <td  className=' items-center w-5'>
+        {(getValues(`${ident}.codigo`) && getValues(`${ident}.codigo`) != undefined) ?
+          <button title={editable ? 'Guardar desc. en el registro de códigos' : 'Editar descripción'} tabIndex={-1} className='hover:text-blue-700 transition flex items-center justify-end ml-2 text-xl' onClick={editDesc} type='button' >{editable ? <FiSave className='bg-white rounded-md p-1 w-6 h-6 '/> : <FiEdit3 className='bg-white   rounded-md p-1 w-6 h-6'/>}</button>
+          : ''
+        }
+      </td>
+
+      <td>
+        <input   placeholder='Precio unit.' {...reg(`${ident}.precio`)} onBlur={calcularTotal} className='p-1 m-1 w-24 rounded-sm text-sm' type="number"/>
+      </td>
+      <td className='text-center'>
+        <button title='Eliminar item' tabIndex={-1} type="button" className=' transition hover:text-red-500 flex items-center justify-start mx-2 mr-4 ' onClick={() => { handleDelete(ident) }}><RxCrossCircled className='w-5 h-5  font-bold rounded-full bg-white border-2 border-white text-lg p-0' /></button>
+      </td>
+      <td className='w-32 overflow-hidden text-start justify-self-end text-sm'>
+         <p className=' text-center bg-white p-1 mr-2 rounded-sm h-auto max-w-s'>{cant && price && subTotal(cant, price)}</p>
+      </td>
+    </tr>  
   )
 }

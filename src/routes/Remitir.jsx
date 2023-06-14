@@ -18,14 +18,6 @@ export default function Remitir() {
   }
 
   return (
-    !imprimir
-      ?
-        <div className=" relative flex align-middle justify-center flex-col text-center py-12 px-8">
-          <Link to='/' className='absolute top-0 left-0 m-2' ><BsFillArrowLeftCircleFill/></Link>
-        <Encabezado setInfo={setInfo} />
-          <Form setElementos={setElementos} setImprimir={setImprimir} />
-      </div>
-      :
-      <Printable elementos={elementos} info={info} setImprimir={setImprimir} />
+    <Form setElementos={setElementos} setImprimir={setImprimir} />
   )
 }

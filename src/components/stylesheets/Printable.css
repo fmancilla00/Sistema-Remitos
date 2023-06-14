@@ -1,23 +1,25 @@
 
 .Sheet{
-    position: absolute;
+    
     background-color: white;
     width: 21cm;
     height: 29.7cm;
-    margin: 0;
-    top: 0;
-    left: 0;
     font-size: 14px;
+    position: relative;
 }
 
 .Sheet2{
-    position: absolute;
     background-color: white;
     width: 21cm;
     height: 59.4cm;
-    margin: 0;
-    top: 0;
+    margin: 0 auto;
     left: 0;
+    top: 0;
+    position: absolute;
+}
+
+.background{
+    height: 59.4cm;
 }
 
 .Copia{
@@ -145,3 +147,8 @@
     word-break: break-all;
 }
 
+.CONT{
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+}
