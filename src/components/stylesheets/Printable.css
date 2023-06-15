@@ -108,7 +108,6 @@
 .CUIT{
     position: absolute;
     left: 118mm;
-    max-width: 250px;
     overflow: hidden;
 }
 
