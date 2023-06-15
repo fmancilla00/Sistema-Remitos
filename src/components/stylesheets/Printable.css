@@ -72,7 +72,7 @@
 
 .Fecha{
     position: absolute;
-    top: 25mm;
+    top: 23mm;
     left: 135mm;
 }
 
@@ -107,7 +107,7 @@
 
 .CUIT{
     position: absolute;
-    left: 122mm;
+    left: 118mm;
     max-width: 250px;
     overflow: hidden;
 }
@@ -120,23 +120,30 @@
 
 .OC{
     position: absolute;
-    left: 122mm;
+    left: 118mm;
 }
 
 .Materiales{
     position: absolute;
-    top: 105mm;
+    top: 115mm;
     left: 15mm;
     width: 180mm;
     border-collapse: collapse;
 }
 
 .Item{
+    font-size: 12.5px;
     max-width: 180mm;
+    height: 20px;
 }
 
+.vacio{
+    width: 100px;
+    height: 20px;
+}
 .Cantidad{
     width: 20mm;
+    height: 20px;
     text-align: center;
     overflow: hidden;
 }
@@ -145,6 +152,7 @@
     padding-left: 5mm;
     overflow: hidden;
     word-break: break-all;
+    height: 20px;
 }
 
 .CONT{

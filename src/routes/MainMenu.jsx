@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import NavMenu from '../components/NavMenu'
-import logo from "../../public/logo.png"
+import logo from "/logo.png"
 
 export default function MainMenu() {
   return (

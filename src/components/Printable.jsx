@@ -9,6 +9,12 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { saveAs } from 'file-saver';
 import { Link } from 'react-router-dom';
+import { IoTrash } from "react-icons/io5";
+import { IoMdPrint } from "react-icons/io";
+import { VscDebugRestart } from "react-icons/vsc";
+import { MdSave } from "react-icons/md";
+
+
 
 export default function Printable({ datos, setImprimir, reset }) {
   const { head } = datos;
@@ -57,16 +63,16 @@ export default function Printable({ datos, setImprimir, reset }) {
   return (
     <>
       <div id='caja' className='CONT'>
-        <div className='flex flex-col gap-5 absolute left-12 top-20 text-white z-40' >
-          <button title="Volver" to='/' onClick={() => { reset(); setImprimir(false) }} className=' p-3 rounded-md big font-medium hover:bg-red-800 bg-red-600 transition' >Nuevo remito</button>
+        <div className='flex flex-col gap-5 absolute right-60 bg-slate-200 rounded-md p-10 top-20 text-white z-40' >
+          <button title="Volver" to='/' onClick={() => { reset(); setImprimir(false) }} className=' flex items-center justify-center p-3 rounded-md big font-medium hover:bg-red-800 bg-red-600 transition' > <VscDebugRestart className=' mr-1'/>Nuevo remito</button>
           {!guardado
             ?
-            <button className='p-3 rounded-md big font-medium hover:bg-blue-800 bg-blue-600'
+            <button className='flex items-center justify-center p-3 rounded-md big font-medium hover:bg-blue-800 bg-blue-600'
               onClick={() => { generarPDF(head, ubiIndex, datos); setGuardado(true) }}>
-              Guardar PDF
+              <MdSave className='mr-1'/>Guardar PDF
             </button>
             :
-            <ReactToPrint  trigger={() => <button className='p-3 rounded-md big font-medium hover:bg-blue-800 bg-blue-600 transition'>Imprimir</button>} content={() => compRef.current} />
+            <ReactToPrint  trigger={() => <button className=' flex items-center justify-center gap-2 p-3 rounded-md big font-medium hover:bg-blue-800 bg-blue-600 transition'> <IoMdPrint/>Imprimir</button>} content={() => compRef.current} />
           }
           <button type='button' className=' flex items-center justify-center gap-2 p-3 rounded-md big font-medium  hover:bg-green-800 bg-green-600 transition' onClick={ () => setImprimir(false)}> <IoIosArrowBack className=' inline'/> Editar remito</button>
         </div>
@@ -100,8 +106,14 @@ export default function Printable({ datos, setImprimir, reset }) {
                 dataArray.map(cod => {
                   return (<div key={cod}>
                     <tr className='Item'>
-                      <td className='Cantidad'>{datos[cod].cantidad}</td>
-                      <td className='DescCode'>{datos[cod].codigo} {datos[cod].descripcion} </td>
+                      {
+                        (datos[cod].cantidad) ?
+                          <>
+                            <td className='Cantidad'>{datos[cod].cantidad}</td>
+                            <td className='DescCode'>{datos[cod].codigo} {datos[cod].descripcion} </td>
+                          </>
+                          : <div className='vacio'> </div>
+                      }
                     </tr>
                   </div>)
                 })

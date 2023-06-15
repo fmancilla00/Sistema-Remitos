@@ -52,11 +52,12 @@ export default function Encabezado({register, getValues, setValue, setInfoHead})
     <div className=' container text-black flex flex-col justify-center items-center gap-4'>
       <div className='flex justify-center items-center gap-5'>
         <ListaProveedores register={register} handle={handleSelect} />
-        <label>Ubicación: </label>
-        <select className='p-1 m-1 bg-white rounded-sm w-52' {...register('head.ubiIndex')} onChange={handleUbi}>{data.ubicacion && data.ubicacion.map((ubi, index) => {
-          return <option  value={index} key={ubi.localidad}>{ubi.localidad}, {ubi.direccion}</option>
-        })}</select>
-        <input type="date" {...register('head.fecha')} />
+        <label>Ubicación: 
+          <select className='p-1 m-1 bg-white rounded-sm w-52' {...register('head.ubiIndex')} onChange={handleUbi}>{data.ubicacion && data.ubicacion.map((ubi, index) => {
+            return <option  value={index} key={ubi.localidad}>{ubi.localidad}, {ubi.direccion}</option>
+          })}</select>
+        </label>
+        <input type="date" className='p-1 m-1 bg-white rounded-sm' {...register('head.fecha')} />
         <input  {...register('head.remito')} className=' w-32 p-1 m-1 text-base rounded-sm' onClick={() => {setRemito('')}} onBlur={handleBlur} type="text" placeholder='Remito N°' />
         <input {...register('head.OC')} className='p-1 m-1 rounded-sm w-36' type="text" placeholder='Orden de Compra' />
       </div>
