@@ -49,15 +49,15 @@ export default function Encabezado({ register, getValues, setValue, setInfoHead,
     <div className=' container text-black flex flex-col justify-center items-center gap-4'>
       <div className='flex justify-center items-center gap-5'>
         <ListaProveedores register={register} handle={handleSelect} selected={selected} />
+          <input  {...register('head.remito')}
+            className={ ( watch('head.remito') ? '' : 'border-2 border-b-red-600 outline-2 outline-red-600 ') + 'w-32 p-1 m-1 text-base rounded-sm'} onBlur={handleBlur} type="text" placeholder='Remito N°' />
+          <input {...register('head.OC')} className={( watch('head.OC') ? '' : ' border-2 border-b-amber-500 outline-2 outline-amber-500 ') +  'p-1 m-1 rounded-sm w-36'} type="text" placeholder='Orden de Compra' />
         <label>Ubicación: 
           <select className='p-1 m-1 bg-white rounded-sm w-52' {...register('head.ubiIndex')} onChange={handleUbi}>{data.ubicacion && data.ubicacion.map((ubi, index) => {
             return <option  value={index} key={ubi.localidad}>{ubi.localidad}, {ubi.direccion}</option>
           })}</select>
         </label>
         <input type="date" className='p-1 m-1 bg-white rounded-sm' {...register('head.fecha', {value: fechaDefault})} />
-        <input  {...register('head.remito')}
-          className={ ( watch('head.remito') ? '' : 'border-2 border-red-600 outline-2 outline-red-600 ') + 'w-32 p-1 m-1 text-base rounded-sm'} onBlur={handleBlur} type="text" placeholder='Remito N°' />
-        <input {...register('head.OC')} className='p-1 m-1 rounded-sm w-36' type="text" placeholder='Orden de Compra' />
       </div>
 
       <div className='flex items-center  justify-around  p-1 w-full gap-5'>
