@@ -23,7 +23,6 @@ export default function Encabezado({register, getValues, setValue, setInfoHead})
   }
 
   const handleUbi = (e) => {
-    console.log(e.target.value);
     setUbiIndex(e.target.value);
     setValue('head.ubiIndex', e.target.value)
   }
@@ -48,7 +47,6 @@ export default function Encabezado({register, getValues, setValue, setInfoHead})
   }, []) 
 
   
-  console.log(ubiIndex);
 
   return (
     <div className=' container text-black flex flex-col justify-center items-center gap-4'>

@@ -10,18 +10,20 @@ import jsPDF from 'jspdf';
 import { saveAs } from 'file-saver';
 
 export default function Printable({ datos, setImprimir }) {
-  const dataArray = Object.keys(datos).slice(1);
   const { head } = datos;
   const { data, ubiIndex } = head;
 
-  const [fecha, setFecha] = useState(' ')
+  const [fecha, setFecha] = useState(' ');
+  const [guardado, setGuardado] = useState(false);
+  const [dataArray, setDataArray] = useState([]);
+  
+
+  useEffect(() => { 
+    setDataArray(Object.keys(datos).slice(1))
+  },[datos])
 
   const generarPDF = (head) => {
     let doc = new jsPDF();
-    const dataArray = Object.keys(datos).slice(1);
-    // Agregar contenido al documento
-    console.log(head);
-    const ubiIndex = head.ubiIndex;
     doc.setFontSize(14);
     doc.text('Razon Social: ' + head.data.razon, 10, 20)
     doc.text('OC: ' + head.OC, 10, 30)
@@ -31,10 +33,12 @@ export default function Printable({ datos, setImprimir }) {
     doc.setFontSize(11);
     doc.text(moment(head.fecha, 'YYYY-MM-DD').format('DD/MM/YYYY'), 150, 30 )
     for (let i = 0; i < dataArray.length; i++) { 
-      doc.text(datos[dataArray[i]].cantidad, 10, 70 + (i * 10))
+      if (datos[dataArray[i]]) {
+        doc.text(datos[dataArray[i]].cantidad, 10, 70 + (i * 10))
       doc.text(datos[dataArray[i]].codigo, 25, 70 + (i * 10))
       doc.text(datos[dataArray[i]].descripcion, 55, 70 + (i * 10))
       doc.text(datos[dataArray[i]].precio, 170, 70 + (i*10))
+      }
     }
     
     // Convertir el documento a Blob
@@ -46,6 +50,7 @@ export default function Printable({ datos, setImprimir }) {
     setFecha(fechaArgentina);
   },[])
 
+  console.log(datos);
   const compRef = useRef();
 
   return (
@@ -53,8 +58,15 @@ export default function Printable({ datos, setImprimir }) {
       
       <div id='caja' className='CONT'>
         <div className='flex flex-col gap-5 absolute left-12 top-20 text-white z-40' >
-          <ReactToPrint  trigger={() => <button className='p-3 rounded-md big font-medium hover:bg-blue-800 bg-blue-600 transition'>Imprimir</button>} content={() => compRef.current} />
-          <button className='text-black' onClick={() => {generarPDF(head, ubiIndex, datos)}}>Ver</button>
+          {!guardado
+            ?
+            <button className='p-3 rounded-md big font-medium hover:bg-blue-800 bg-blue-600'
+              onClick={() => { generarPDF(head, ubiIndex, datos); setGuardado(true) }}>
+              Guardar PDF
+            </button>
+            :
+            <ReactToPrint  trigger={() => <button className='p-3 rounded-md big font-medium hover:bg-blue-800 bg-blue-600 transition'>Imprimir</button>} content={() => compRef.current} />
+          }
           <button type='button' className=' flex items-center justify-center gap-2 p-3 rounded-md big font-medium  hover:bg-green-800 bg-green-600 transition' onClick={ () => setImprimir(false)}> <IoIosArrowBack className=' inline'/> Editar remito</button>
         </div>
         <div className='Sheet2' ref={compRef}>

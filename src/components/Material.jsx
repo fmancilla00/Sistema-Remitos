@@ -49,8 +49,6 @@ export default function Material({ident, handleDelete, reg, setValue, getValues,
     const precio = getValues(`${ident}.precio`)
     const cantidad = getValues(`${ident}.cantidad`)
     const newTotal = total - totalItem
-    console.log(precio);
-    console.log(cantidad);
     if (precio && cantidad) {
       const newTotalItem = Number(precio) * Number(cantidad)
       setTotalItem(newTotalItem);
@@ -60,7 +58,6 @@ export default function Material({ident, handleDelete, reg, setValue, getValues,
   
   const verSubmit = e => { 
     e.preventDefault();
-    console.log(e);
   }
 
 

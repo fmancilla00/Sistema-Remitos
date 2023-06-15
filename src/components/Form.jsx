@@ -37,6 +37,7 @@ export default function Form({ setElementos}) {
     unregister(`${ident}.codigo`)
     unregister(`${ident}.descripcion`)
     unregister(`${ident}.cantidad`)
+    unregister(`${ident}.precio`)
     setMaterials(newMats);
 
   }
@@ -44,7 +45,6 @@ export default function Form({ setElementos}) {
 
   const verForm = data => {
     data.head.data = infoHead;
-    console.log(data);
     setDatos(data);
     setImprimir(true);
   }
@@ -85,7 +85,7 @@ export default function Form({ setElementos}) {
             <div className=''>{
               parseFloat(total).toLocaleString('es-AR', { style: 'currency', currency: 'ARS' })
             }</div>
-            <button type='submit' className=' bg-slate-600 text-white font-normal p-3  mt-5 rounded-sm' >Confirmar Datos</button>
+            <button type='submit' className=' bg-slate-600 text-white font-normal p-3  mt-5 rounded-sm hover:bg-slate-700 transition' >Confirmar Datos</button>
               </form>
         </div>
           
