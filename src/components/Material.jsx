@@ -82,7 +82,7 @@ export default function Material({ident, handleDelete, reg, setValue, getValues,
       </td>
 
       <td>
-        <input   placeholder='Precio unit.' {...reg(`${ident}.precio`)} onBlur={calcularTotal} className='p-1 m-1 w-24 rounded-sm text-sm' type="number"/>
+        <input   placeholder='Precio unit.' {...reg(`${ident}.precio`)} onBlur={calcularTotal} className='p-1 m-1 w-24 rounded-sm text-sm' type="number" step="0.01"/>
       </td>
       <td className='text-center'>
         <button title='Eliminar item' tabIndex={-1} type="button" className=' transition hover:text-red-500 flex items-center justify-start mx-2 mr-4 ' onClick={() => { handleDelete(ident) }}><RxCrossCircled className='w-5 h-5  font-bold rounded-full bg-white border-2 border-white text-lg p-0' /></button>

@@ -43,8 +43,9 @@ export default function Printable({ datos, setImprimir, reset }) {
       if (datos[dataArray[i]]) {
         doc.text(datos[dataArray[i]].cantidad, 10, 70 + (i * 10))
       doc.text(datos[dataArray[i]].codigo, 25, 70 + (i * 10))
-      doc.text(datos[dataArray[i]].descripcion, 55, 70 + (i * 10))
-      doc.text(datos[dataArray[i]].precio, 170, 70 + (i*10))
+        doc.text(datos[dataArray[i]].descripcion, 55, 70 + (i * 10));
+      const simbolo = datos[dataArray[i]].precio ? '$' : ''      
+      doc.text(simbolo + datos[dataArray[i]].precio, 170, 70 + (i*10))
       }
     }
     

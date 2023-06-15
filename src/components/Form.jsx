@@ -9,9 +9,9 @@ import Encabezado from './Encabezado';
 import Printable from './Printable';
 import { Link } from 'react-router-dom';
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
-import { html2pdf } from "html2pdf.js";
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+import { AiOutlineClear } from "react-icons/ai";
+
+
 
 
 export default function Form({ setElementos}) {
@@ -24,11 +24,13 @@ export default function Form({ setElementos}) {
 
   const restaurarEstados = () => { 
     reset();
-    setMaterials([]);
-    setTotal(0);
-    setInfoHead({});
-    setDatos(null);
-    setImprimir(false);
+    if (imprimir) {
+      setDatos(null);
+      setMaterials([]);
+      setTotal(0);
+      setInfoHead({});
+      setImprimir(false);
+    }
   }
 
   useEffect(() => {
@@ -69,7 +71,7 @@ export default function Form({ setElementos}) {
           <div className="  min-h-screen relative flex items-center justify-center flex-col text-center py-12 px-8">
             <Link  title="Volver" to='/' className=' hover:-translate-x-0.5 transition absolute top-0 left-0 m-6 text-3xl text-slate-800' ><BsFillArrowLeftCircleFill/></Link>
             <form onSubmit={handleSubmit(verForm)} className='text-black'>
-            <Encabezado register={register} getValues={getValues} setValue={setValue} setInfoHead={setInfoHead} />
+              <Encabezado watch={watch} register={register} getValues={getValues} setValue={setValue} setInfoHead={setInfoHead} />
             <table className=' mx-auto'>
             <thead className=' border-b-2 border-black'>  
             <tr className=''>
@@ -91,8 +93,11 @@ export default function Form({ setElementos}) {
               )
             })}
             </tbody>
-            </table>
-            <button  type='button' title='Agregar un material' className='m-2' onClick={addMaterial}><BiAddToQueue className='w-6 h-6 bg-white  hover:text-blue-700 transition rounded-md p-1'/></button>
+              </table>
+              <div className='flex mx-auto justify-between w-5/6'>
+              <button type='button' title='Agregar un material' className='m-2' onClick={addMaterial}><BiAddToQueue className='w-6 h-6 bg-white  hover:text-blue-700 transition rounded-md p-1' /></button>
+              <button title='Nuevo remito' type='button' onClick={restaurarEstados}><AiOutlineClear className='w-6 h-6 bg-white  hover:text-red-500 transition rounded-md p-1'/></button>
+              </div>
             <div className=''>{
               parseFloat(total).toLocaleString('es-AR', { style: 'currency', currency: 'ARS' })
             }</div>
