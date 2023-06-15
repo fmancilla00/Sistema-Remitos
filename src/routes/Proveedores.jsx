@@ -37,7 +37,7 @@ export default function Proveedores() {
       <div className=''>
         <form onSubmit={handleSubmit(onSubmit)} className=' mb-10 rounded-md bg-slate-400 w-96 mx-auto text-slate-700 flex flex-col gap-5 p-10 items-center justify-center'>
           <input autoFocus {...register('razon')} className=' w-64 p-2 rounded-sm' required type="text" placeholder='Razon Social *'/>
-          <input {...register('cuit')} className=' w-64 p-2 rounded-sm' required type="number" placeholder='CUIT *' />
+          <input {...register('cuit')} className=' w-64 p-2 rounded-sm' required type="text" placeholder='CUIT *' />
           {
             fields.map(({ id }, index) => {
               return (
