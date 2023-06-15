@@ -102,13 +102,13 @@
 .Info-1{
     padding-left: 25mm;
     display: flex;
+    width: 100%;
     position: relative;
 }
 
 .CUIT{
     position: absolute;
     left: 118mm;
-    max-width: 250px;
     overflow: hidden;
 }
 
