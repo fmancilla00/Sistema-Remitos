@@ -8,8 +8,9 @@ import moment from 'moment';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { saveAs } from 'file-saver';
+import { Link } from 'react-router-dom';
 
-export default function Printable({ datos, setImprimir }) {
+export default function Printable({ datos, setImprimir, reset }) {
   const { head } = datos;
   const { data, ubiIndex } = head;
 
@@ -55,9 +56,9 @@ export default function Printable({ datos, setImprimir }) {
 
   return (
     <>
-      
       <div id='caja' className='CONT'>
         <div className='flex flex-col gap-5 absolute left-12 top-20 text-white z-40' >
+          <button title="Volver" to='/' onClick={() => { reset(); setImprimir(false) }} className=' p-3 rounded-md big font-medium hover:bg-red-800 bg-red-600 transition' >Nuevo remito</button>
           {!guardado
             ?
             <button className='p-3 rounded-md big font-medium hover:bg-blue-800 bg-blue-600'

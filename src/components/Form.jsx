@@ -22,11 +22,22 @@ export default function Form({ setElementos}) {
   const [datos, setDatos] = useState(null);
   const [imprimir, setImprimir] = useState(false);
 
+  const restaurarEstados = () => { 
+    reset();
+    setMaterials([]);
+    setTotal(0);
+    setInfoHead({});
+    setDatos(null);
+    setImprimir(false);
+  }
+
   useEffect(() => {
-    const newMats = addMaterials(9);
-    setMaterials(newMats);
+    if (!imprimir && datos == null) {
+      const newMats = addMaterials(9);
+      setMaterials(newMats);
+    }
    },
-    [])
+    [imprimir])
 
   const addMaterial = () => {
     const newMat = { id: uuidv4() }
@@ -89,7 +100,7 @@ export default function Form({ setElementos}) {
               </form>
         </div>
           
-          : <Printable setImprimir={setImprimir} datos={datos} />
+          : <Printable setImprimir={setImprimir} datos={datos} reset={restaurarEstados} />
       }
     </>
   )

@@ -10,9 +10,7 @@ export default function Encabezado({register, getValues, setValue, setInfoHead})
 
   const [selected, setSelected] = useState(null);
   const [data, setData] = useState({});
-  const [remito, setRemito] = useState('');
   const [ubiIndex, setUbiIndex] = useState('0');
-  const [OC, setOC] = useState('');
 
 
   const handleSelect = (e) => {
@@ -21,6 +19,8 @@ export default function Encabezado({register, getValues, setValue, setInfoHead})
     setValue('head.ubiIndex', '0')
     setValue('head.empresa', e.target.value)
   }
+
+  
 
   const handleUbi = (e) => {
     setUbiIndex(e.target.value);
