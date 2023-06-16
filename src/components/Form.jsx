@@ -23,14 +23,18 @@ export default function Form({ setElementos}) {
   const [imprimir, setImprimir] = useState(false);
 
   const restaurarEstados = () => { 
+    setTotal(0);
+    setInfoHead({});
     reset();
     if (imprimir) {
-      setDatos(null);
       setMaterials([]);
-      setTotal(0);
-      setInfoHead({});
       setImprimir(false);
+    } else { 
+      const codes = Object.keys(materials).slice(1);
+      codes.forEach(code => { deleteMaterial(code) })
+      setMaterials(addMaterials(9))
     }
+    setDatos(null);
   }
 
   useEffect(() => {
@@ -98,9 +102,11 @@ export default function Form({ setElementos}) {
               <button type='button' title='Agregar un material' className='m-2' onClick={addMaterial}><BiAddToQueue className='w-6 h-6 bg-white  hover:text-blue-700 transition rounded-md p-1' /></button>
               <button title='Nuevo remito' type='button' onClick={restaurarEstados}><AiOutlineClear className='w-6 h-6 bg-white  hover:text-red-500 transition rounded-md p-1'/></button>
               </div>
-            <div className=''>{
+              <div className=''>
+                <strong className='m-3'>Subtotal: </strong>
+                {
               parseFloat(total).toLocaleString('es-AR', { style: 'currency', currency: 'ARS' })
-            }</div>
+              } <strong className='ml-3'>|</strong> <strong className='m-3'>Total con impuestos:</strong> { (parseFloat(total)*1.21).toLocaleString('es-AR', { style: 'currency', currency: 'ARS' }) }</div>
             <button type='submit' className=' bg-slate-600 text-white font-normal p-3  mt-5 rounded-sm hover:bg-slate-700 transition' >Confirmar Datos</button>
               </form>
         </div>
