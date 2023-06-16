@@ -97,8 +97,8 @@ export default function Printable({ datos, setImprimir, reset }) {
                   <span className='CUIT'>{data.cuit && data.cuit}</span>
                 </div>
                 <div className='Info-2'>
-                  <span className='numCliente'>{data.numCliente && data.numCliente}</span>
-                  <span className='OC'>{head.OC}</span>
+                  <span className='numCliente'>{data.numCliente ? data.numCliente : '-'}</span>
+                  <span className='OC'>{head.OC ? head.OC : '-'}</span>
                 </div>
             </section>
           </header>
