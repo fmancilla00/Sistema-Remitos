@@ -8,7 +8,7 @@ import { RxCrossCircled } from "react-icons/rx";
 
 
 
-export default function Material({ident, handleDelete, reg, setValue, getValues, watch, total, setTotal}) {
+export default function Material({ident, handleDelete, reg, setValue, getValues, watch, total, setTotal, size}) {
 
   const [editable, setEditable] = useState(true)
   const [totalItem, setTotalItem] = useState(0)
@@ -63,6 +63,7 @@ export default function Material({ident, handleDelete, reg, setValue, getValues,
 
   return (
     <tr className='bg-slate-300 border-separate ' autoComplete='off' onSubmit={verSubmit}>
+      <td>{size + 1}</td>
       <td>
         <input  {...reg(`${ident}.cantidad`)}  placeholder="Cant." onBlur={calcularTotal} className=' text-center p-1 m-1 w-14 rounded-sm text-sm' type="number"/>
       </td>

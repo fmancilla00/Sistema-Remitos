@@ -46,7 +46,7 @@ export default function Form({ setElementos}) {
     [imprimir])
 
   const addMaterial = () => {
-    const newMat = { id: uuidv4() }
+    const newMat = { id: uuidv4(), pos: materials.length }
     setMaterials([...materials, newMat])
   }
   const deleteMaterial = (ident) => {
@@ -66,7 +66,8 @@ export default function Form({ setElementos}) {
     setImprimir(true);
   }
   const { register, handleSubmit, unregister, reset, setValue, getValues, watch } = useForm(); 
-
+  
+  console.log(materials.length);
   return (
     <>
       {
@@ -79,6 +80,7 @@ export default function Form({ setElementos}) {
             <table className=' mx-auto'>
             <thead className=' border-b-2 border-black'>  
             <tr className=''>
+              <th>Pos</th>
               <th className='w-20'>Cantidad</th>
               <th className=' p-2 w-32'>Código Mat.</th>
                   <th className=''>Descripción Breve</th>
@@ -90,10 +92,10 @@ export default function Form({ setElementos}) {
             </thead>
             <tbody>      
             {  
-              materials.map((mat) => {
+              materials.map((mat, index) => {
                 const { id } = mat;
               return(
-                <Material watch={watch} setValue={setValue} getValues={getValues} reg={register} key={id} ident={id} handleDelete={deleteMaterial} total={total} setTotal={setTotal} />
+                <Material watch={watch} setValue={setValue} getValues={getValues} reg={register} key={id} ident={id} handleDelete={deleteMaterial} total={total} setTotal={setTotal} size={index} />
               )
             })}
             </tbody>
