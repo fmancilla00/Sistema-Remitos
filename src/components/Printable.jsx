@@ -163,7 +163,7 @@ export default function Printable({ datos, setImprimir, reset }) {
                 })
               }
           </table>
-              </div>
+              </div>  
       </div>
         </div>
       </>
