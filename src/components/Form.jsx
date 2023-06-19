@@ -51,6 +51,7 @@ export default function Form({ setElementos}) {
   }
   const deleteMaterial = (ident) => {
     const newMats = materials.filter((mat) => mat.id !== ident)
+    setTotal(total - (getValues(`${ident}.precio`)* getValues(`${ident}.cantidad`)));
     unregister(`${ident}.codigo`)
     unregister(`${ident}.descripcion`)
     unregister(`${ident}.cantidad`)
@@ -80,7 +81,7 @@ export default function Form({ setElementos}) {
             <table className=' mx-auto'>
             <thead className=' border-b-2 border-black'>  
             <tr className=''>
-              <th>Pos</th>
+              <th className=' text-center p-2'>Pos</th>
               <th className='w-20'>Cantidad</th>
               <th className=' p-2 w-32'>Código Mat.</th>
                   <th className=''>Descripción Breve</th>
