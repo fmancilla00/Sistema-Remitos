@@ -120,11 +120,11 @@ export default function Printable({ datos, setImprimir, reset }) {
                 })
               }
           </table>
-              </div>
-            <div className='text-black Sheet'>
+          </div>
+          <div className='text-black Sheet'>
           <header className='Encabezado'>
             <section className='Emisor'>
-              <span className='Fecha'>12/06/2022</span>
+              <span className='Fecha'>{fecha}</span>
             </section>  
             <section className='Receptor'>
                 <span className='Razon'>{data.razon}</span> 
@@ -140,8 +140,8 @@ export default function Printable({ datos, setImprimir, reset }) {
                   <span className='CUIT'>{data.cuit && data.cuit}</span>
                 </div>
                 <div className='Info-2'>
-                  <span className='numCliente'>{data.numCliente && data.numCliente}</span>
-                  <span className='OC'>{head.OC}</span>
+                  <span className='numCliente'>{data.numCliente ? data.numCliente : '-'}</span>
+                  <span className='OC'>{head.OC ? head.OC : '-'}</span>
                 </div>
             </section>
           </header>
@@ -150,14 +150,20 @@ export default function Printable({ datos, setImprimir, reset }) {
                 dataArray.map(cod => {
                   return (<div key={cod}>
                     <tr className='Item'>
-                      <td className='Cantidad'>{datos[cod].cantidad}</td>
-                      <td className='DescCode'>{datos[cod].codigo} {datos[cod].descripcion} </td>
+                      {
+                        (datos[cod].cantidad) ?
+                          <>
+                            <td className='Cantidad'>{datos[cod].cantidad}</td>
+                            <td className='DescCode'>{datos[cod].codigo} {datos[cod].descripcion} </td>
+                          </>
+                          : <div className='vacio'> </div>
+                      }
                     </tr>
                   </div>)
                 })
               }
           </table>
-        </div>
+              </div>
       </div>
         </div>
       </>
