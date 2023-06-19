@@ -49,7 +49,7 @@ export default function Encabezado({ register, getValues, setValue, setInfoHead,
     <div className=' container text-black flex flex-col justify-center items-center gap-4'>
       <div className='flex justify-center items-center gap-5'>
         <ListaProveedores register={register} handle={handleSelect} selected={selected} />
-          <input  {...register('head.remito')}
+          <input  {...register('head.remito')} required
             className={ ( watch('head.remito') ? '' : 'border-2 border-b-red-600 outline-2 outline-red-600 ') + 'w-32 p-1 m-1 text-base rounded-sm'} onBlur={handleBlur} type="text" placeholder='Remito N°' />
           <input {...register('head.OC')} className={( watch('head.OC') ? '' : ' border-2 border-b-amber-500 outline-2 outline-amber-500 ') +  'p-1 m-1 rounded-sm w-36'} type="text" placeholder='Orden de Compra' />
         <label>Ubicación: 
