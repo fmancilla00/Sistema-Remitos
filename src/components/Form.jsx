@@ -107,9 +107,8 @@ export default function Form({ setElementos}) {
               </div>
               <div className=''>
                 <strong className='m-3'>Subtotal: </strong>
-                { total &&
-              parseFloat(total).toLocaleString('es-AR', { style: 'currency', currency: 'ARS' })
-              } <strong className='ml-3'>|</strong> <strong className='m-3'>Total con impuestos:</strong> { total &&(parseFloat(total)*1.21).toLocaleString('es-AR', { style: 'currency', currency: 'ARS' }) }</div>
+                { parseFloat(total).toLocaleString('es-AR', { style: 'currency', currency: 'ARS' })
+              } <strong className='ml-3'>|</strong> <strong className='m-3'>Total con impuestos:</strong> { (parseFloat(total)*1.21).toLocaleString('es-AR', { style: 'currency', currency: 'ARS' }) }</div>
             <button type='submit' className=' bg-slate-600 text-white font-normal p-3  mt-5 rounded-sm hover:bg-slate-700 transition' >Confirmar Datos</button>
               </form>
         </div>
