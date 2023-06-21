@@ -23,7 +23,6 @@ export default function Form({ setElementos}) {
   const [imprimir, setImprimir] = useState(false);
 
   const restaurarEstados = () => { 
-    setTotal(0);
     setInfoHead({});
     reset();
     if (imprimir) {
@@ -34,6 +33,7 @@ export default function Form({ setElementos}) {
       codes.forEach(code => { deleteMaterial(code) })
       setMaterials(addMaterials(9))
     }
+    setTotal(0);
     setDatos(null);
   }
 
@@ -51,7 +51,7 @@ export default function Form({ setElementos}) {
   }
   const deleteMaterial = (ident) => {
     const newMats = materials.filter((mat) => mat.id !== ident)
-    setTotal(total - (getValues(`${ident}.precio`)* getValues(`${ident}.cantidad`)));
+    setTotal(total - Number((getValues(`${ident}.precio`))* Number(getValues(`${ident}.cantidad`))));
     unregister(`${ident}.codigo`)
     unregister(`${ident}.descripcion`)
     unregister(`${ident}.cantidad`)
@@ -107,9 +107,9 @@ export default function Form({ setElementos}) {
               </div>
               <div className=''>
                 <strong className='m-3'>Subtotal: </strong>
-                {
+                { total &&
               parseFloat(total).toLocaleString('es-AR', { style: 'currency', currency: 'ARS' })
-              } <strong className='ml-3'>|</strong> <strong className='m-3'>Total con impuestos:</strong> { (parseFloat(total)*1.21).toLocaleString('es-AR', { style: 'currency', currency: 'ARS' }) }</div>
+              } <strong className='ml-3'>|</strong> <strong className='m-3'>Total con impuestos:</strong> { total &&(parseFloat(total)*1.21).toLocaleString('es-AR', { style: 'currency', currency: 'ARS' }) }</div>
             <button type='submit' className=' bg-slate-600 text-white font-normal p-3  mt-5 rounded-sm hover:bg-slate-700 transition' >Confirmar Datos</button>
               </form>
         </div>
