@@ -116,6 +116,7 @@
     display: flex;
     position: relative;
     padding-left: 43mm;
+    width: 100%;
 }
 
 .OC{
