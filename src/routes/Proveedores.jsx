@@ -15,7 +15,6 @@ export default function Proveedores() {
   const { fields, append, remove } = useFieldArray({ control, name: 'ubicacion' })
   
   useEffect(() => {
-    console.log('hola');
     append({})
     remove(1);
   }, []);

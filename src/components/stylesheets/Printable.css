@@ -59,6 +59,7 @@
     align-items: flex-start;
     padding-left: 25mm;
     gap: 1.5mm;
+    top: 0.8mm;
 }
 
 .Info{
@@ -68,6 +69,8 @@
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
+    position: relative;
+    top: 0.8mm;
 }
 
 .Fecha{
@@ -133,7 +136,7 @@
 }
 
 .Item{
-    font-size: 12.5px;
+    font-size: 11.5px;
     max-width: 180mm;
     height: 20px;
 }

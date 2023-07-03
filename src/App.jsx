@@ -1,31 +1,20 @@
-import { useState } from 'react'
 import './App.css'
-import Form from './components/Form'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Remitir from './routes/Remitir'
 import Proveedores from './routes/Proveedores';
 import MainMenu from './routes/MainMenu';
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <MainMenu/>
-  },
-  {
-    path: '/proveedores',
-    element: <Proveedores/>
-  },
-  {
-    path: '/remitir',
-    element: <Remitir/>
-  }
-]);
+import { Routes, Route } from 'react-router-dom';
+import Printable from './components/Printable';
 
 function App() {
   return (
-    <div className="bg-slate-200">
-      <RouterProvider router={router}/>
-    </div>
+      <div className="bg-slate-200">
+        <Routes>
+          <Route path="/" element={<MainMenu />} />
+          <Route path="/proveedores" element={<Proveedores />} />
+          <Route path="/remitir" element={<Remitir />} />
+          <Route path="/imprimir" element={<Printable />} />
+        </Routes>
+      </div>
   )
 }
 
