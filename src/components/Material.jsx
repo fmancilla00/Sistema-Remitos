@@ -32,7 +32,7 @@ export default function Material({ident, size}) {
           </td>
       }
       <td className=''>
-        <input  {...reg(DESC)} placeholder='Descripción' className='w-96 p-1 m-1 rounded-sm text-sm' type="text" readOnly={!editable && usaCodigo} onChange={() => { setEditable(true)}} tabIndex={(localStorage.getItem(codeState) === null) ? undefined : -1} />
+        <input  {...reg(DESC)} placeholder='Descripción' className='w-96 p-1 m-1 rounded-sm text-sm' type="text" readOnly={!editable && usaCodigo} onChange={() => { setEditable(true)}} tabIndex={(localStorage.getItem(codeState) === null || !usaCodigo) ? undefined : -1} />
       </td>
 
       <td  className=' items-center w-5'>
@@ -45,11 +45,11 @@ export default function Material({ident, size}) {
       <td>
         <input   placeholder='Precio unit.' {...reg(PRECIO)} onBlur={calcularTotal} className='p-1 m-1 w-24 rounded-sm text-sm' type="number" step="0.01"/>
       </td>
-      <td className='text-center'>
-        <button title='Eliminar item' tabIndex={-1} type="button" className=' transition hover:text-red-500 flex items-center justify-start mx-2 mr-4 ' onClick={() => { deleteMaterial(ident) }}><RxCrossCircled className='w-5 h-5  font-bold rounded-full bg-white border-2 border-white text-lg p-0' /></button>
-      </td>
       <td className='w-32 overflow-hidden text-start justify-self-end text-sm'>
          <p className=' text-center bg-white p-1 mr-2 rounded-sm h-auto max-w-s'>{cant && price && subTotal(cant, price)}</p>
+      </td>
+      <td className='text-center'>
+        <button title='Eliminar item' tabIndex={-1} type="button" className=' transition hover:text-red-500 flex items-center justify-start mx-2 mr-4 ' onClick={() => { deleteMaterial(ident) }}><RxCrossCircled className='w-5 h-5  font-bold rounded-full bg-white border-2 border-white text-lg p-0' /></button>
       </td>
     </tr>  
   )

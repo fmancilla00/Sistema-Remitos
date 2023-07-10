@@ -33,8 +33,8 @@ export default function Form() {
               <th className=''>Descripción Breve</th>
               <th> </th>
               <th className=' w-32'>Precio Unit.</th>
-              <th className='w-1'></th>
               <th className='w-32 text-center'>Precio total</th>
+              <th className='w-1'></th>
             </tr>
             </thead>
             <tbody>      

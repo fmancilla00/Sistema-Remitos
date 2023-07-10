@@ -25,8 +25,11 @@ export default function Encabezado() {
             return <option  value={index} key={ubi.direccion}>{ubi.localidad}, {ubi.direccion}</option>
           })}</select>
         </label>
-        <input type="date" className='p-1 m-1 bg-white rounded-sm' {...register('head.fecha', {value: fechaDefault})} />
-        <button type='button' onClick={toggleCodigos}>Sin Codigos</button>
+        <input type="date" className='p-1 m-1 bg-white rounded-sm' {...register('head.fecha', { value: fechaDefault })} />
+        <label className='flex items-center justify-center'>
+          Usar códigos
+          <input className='m-1' type="checkbox" defaultChecked={true} onChange={toggleCodigos}/>
+        </label>
       </div>
       <div className='flex items-center  justify-around  p-1 w-full gap-5'>
         <h4> <strong>Domicilio:</strong> {infoHead.ubicacion && ubiIndex && infoHead.ubicacion[ubiIndex].direccion}</h4>
