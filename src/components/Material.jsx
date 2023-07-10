@@ -11,12 +11,12 @@ import { ObtenerConstantes } from '../mocks/Constantes';
 
 export default function Material({ident, size}) {
 
-  const { register: reg, getValues, deleteMaterial } = useContext(DataContext);
+  const { register: reg, getValues, deleteMaterial, usaCodigo } = useContext(DataContext);
   
   const { PRECIO, CANT, DESC, CODIGO } = ObtenerConstantes(ident);
   
 
-  const { procesarCodigo,  codeState, cant, price, editDesc, calcularTotal, editable} = useMaterials({ ident });
+  const { procesarCodigo,  codeState, cant, price, editDesc, calcularTotal, editable, setEditable} = useMaterials({ ident });
   
 
   return (
@@ -25,16 +25,18 @@ export default function Material({ident, size}) {
       <td>
         <input  {...reg(CANT)}  placeholder="Cant." onBlur={calcularTotal} className=' text-center p-1 m-1 w-14 rounded-sm text-sm' type="number"/>
       </td>
-
+      {
+        usaCodigo &&  
+          <td className=''>
+            <input {...reg(CODIGO)} onBlur={procesarCodigo} placeholder='Código' className='w-24 p-1 m-1 text-sm rounded-sm' type="text" />
+          </td>
+      }
       <td className=''>
-        <input {...reg(CODIGO)} onBlur={procesarCodigo} placeholder='Código' className='w-24 p-1 m-1 text-sm rounded-sm' type="text" />
-      </td>
-      <td className=''>
-        <input  {...reg(DESC)} placeholder='Descripción' className='w-96 p-1 m-1 rounded-sm text-sm' type="text" readOnly={!editable} tabIndex={(localStorage.getItem(codeState) === null) ? undefined : -1} />
+        <input  {...reg(DESC)} placeholder='Descripción' className='w-96 p-1 m-1 rounded-sm text-sm' type="text" readOnly={!editable && usaCodigo} onChange={() => { setEditable(true)}} tabIndex={(localStorage.getItem(codeState) === null) ? undefined : -1} />
       </td>
 
       <td  className=' items-center w-5'>
-        {(getValues(CODIGO) && getValues(CODIGO) != undefined) ?
+        {(getValues(CODIGO) && getValues(CODIGO) != undefined && usaCodigo) ?
           <button title={editable ? 'Guardar desc. en el registro de códigos' : 'Editar descripción'} tabIndex={-1} className='hover:text-blue-700 transition flex items-center justify-end ml-2 text-xl' onClick={editDesc} type='button' >{editable ? <FiSave className='bg-white rounded-md p-1 w-6 h-6 '/> : <FiEdit3 className='bg-white   rounded-md p-1 w-6 h-6'/>}</button>
           : ''
         }

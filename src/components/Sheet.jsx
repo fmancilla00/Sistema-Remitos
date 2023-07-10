@@ -4,7 +4,7 @@ import { DataContext } from '../Contexts/DataContext';
 import moment from 'moment';
 
 export default function Sheet({dataArray}) {
-  const { datos, ubiIndex, infoHead} = useContext(DataContext);
+  const { datos, ubiIndex, infoHead, usaCodigo} = useContext(DataContext);
   const { head } = datos;
   const fechaArgentina = moment(head.fecha, 'YYYY-MM-DD').format('DD/MM/YYYY');
 
@@ -42,7 +42,7 @@ export default function Sheet({dataArray}) {
                         (datos[cod].cantidad) ?
                           <>
                             <td className='Cantidad'>{datos[cod].cantidad}</td>
-                            <td className='DescCode'>{datos[cod].codigo} {datos[cod].descripcion} </td>
+                            <td className='DescCode'>{usaCodigo && datos[cod].codigo} {datos[cod].descripcion} </td>
                           </>
                           : <div className='vacio'> </div>
                       }

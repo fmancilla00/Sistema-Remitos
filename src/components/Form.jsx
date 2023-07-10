@@ -10,7 +10,7 @@ import { DataContext } from '../Contexts/DataContext';
 
 export default function Form() {
 
-  const { total, ids, addId, addInitialIds, handleSubmit, procesarDatos, datos, reiniciarRemito } = useContext(DataContext);
+  const { total, ids, addId, addInitialIds, handleSubmit, procesarDatos, datos, reiniciarRemito, usaCodigo } = useContext(DataContext);
 
   if (datos === null) {
     addInitialIds();
@@ -21,18 +21,20 @@ export default function Form() {
           <div className="  min-h-screen relative flex items-center justify-center flex-col text-center py-12 px-8">
             <Link  title="Volver" to='/' className=' hover:-translate-x-0.5 transition absolute top-0 left-0 m-6 text-3xl text-slate-800' ><BsFillArrowLeftCircleFill/></Link>
             <form onSubmit={handleSubmit(procesarDatos)} className='text-black'>
-              <Encabezado  />
+          <Encabezado />
             <table className=' mx-auto'>
             <thead className=' border-b-2 border-black'>  
             <tr className=''>
               <th className=' text-center p-2'>Pos</th>
               <th className='w-20'>Cantidad</th>
-              <th className=' p-2 w-32'>Código Mat.</th>
-                  <th className=''>Descripción Breve</th>
-                  <th> </th>
+              {usaCodigo && 
+                <th className=' p-2 w-32'>Código Mat.</th>
+              }
+              <th className=''>Descripción Breve</th>
+              <th> </th>
               <th className=' w-32'>Precio Unit.</th>
-                  <th className='w-1'></th>
-                  <th className='w-32 text-center'>Precio total</th>
+              <th className='w-1'></th>
+              <th className='w-32 text-center'>Precio total</th>
             </tr>
             </thead>
             <tbody>      
@@ -40,7 +42,7 @@ export default function Form() {
               ids.map((id, index) => {
                 return (
                   <Material key={id} ident={id} size={index} />
-              )
+                )
             })}
               
             </tbody>

@@ -20,6 +20,8 @@ export const DataContextProvider = ({ children }) => {
   
   const [infoHead, setInfoHead] = useState({});
   const [ubiIndex, setUbiIndex] = useState('0');
+
+  const [usaCodigo, setUsaCodigo] = useState(true);
   
   
   
@@ -76,8 +78,8 @@ export const DataContextProvider = ({ children }) => {
 
   const selected = watch('head.empresa')
 
-  const setearProveedor = () => { 
-      useEffect(() => {
+  const setearProveedor = () => {
+    useEffect(() => {
       const provs = obtenerObjetoProveedores(selected);
       if (provs != null) {
         setInfoHead(provs);
@@ -86,12 +88,12 @@ export const DataContextProvider = ({ children }) => {
     }, [selected])
   }
 
-  const reiniciarRemito = () => { 
+  const reiniciarRemito = () => {
     setInfoHead({});
     reset();
     if (datos !== null) {
       setIds([]);
-    } else { 
+    } else {
       const codes = ids.slice(1);
       codes.forEach(code => { deleteMaterial(code) })
       setIds(addMaterials(9))
@@ -99,6 +101,7 @@ export const DataContextProvider = ({ children }) => {
     setTotal(0);
     setDatos(null);
     setUbiIndex(0);
+    setUsaCodigo(true);
   }
 
   const addInitialIds = () => {
@@ -106,13 +109,17 @@ export const DataContextProvider = ({ children }) => {
       useEffect(() => {
         reiniciarRemito();
       },
-      [])
+        [])
     }
+  }
+
+  const toggleCodigos = () => { 
+    setUsaCodigo(!usaCodigo)
   }
 
   return (
     
-    <DataContext.Provider value={{ datos, total, setTotal, ids, addInitialIds, addId, register, handleSubmit, unregister, setValue, getValues, watch, deleteMaterial, procesarDatos, infoHead, handleSelect, handleUbi, formatearRemito, ubiIndex, setearProveedor, selected, reiniciarRemito}}>
+    <DataContext.Provider value={{ datos, total, setTotal, ids, addInitialIds, addId, register, handleSubmit, unregister, setValue, getValues, watch, deleteMaterial, procesarDatos, infoHead, handleSelect, handleUbi, formatearRemito, ubiIndex, setearProveedor, selected, reiniciarRemito, usaCodigo, toggleCodigos}}>
       { children }
     </DataContext.Provider>
   )

@@ -5,7 +5,7 @@ import { DataContext } from '../Contexts/DataContext';
 
 export default function Encabezado() {
   
-  const { watch, register, infoHead, formatearRemito, handleUbi, ubiIndex, setearProveedor } = useContext(DataContext);
+  const { watch, register, infoHead, formatearRemito, handleUbi, ubiIndex, setearProveedor, toggleCodigos } = useContext(DataContext);
 
   
   setearProveedor();
@@ -26,8 +26,8 @@ export default function Encabezado() {
           })}</select>
         </label>
         <input type="date" className='p-1 m-1 bg-white rounded-sm' {...register('head.fecha', {value: fechaDefault})} />
+        <button type='button' onClick={toggleCodigos}>Sin Codigos</button>
       </div>
-
       <div className='flex items-center  justify-around  p-1 w-full gap-5'>
         <h4> <strong>Domicilio:</strong> {infoHead.ubicacion && ubiIndex && infoHead.ubicacion[ubiIndex].direccion}</h4>
         <h4><strong>Localidad:</strong> {infoHead.ubicacion && ubiIndex && infoHead.ubicacion[ubiIndex].localidad}</h4>
