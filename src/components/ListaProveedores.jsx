@@ -1,6 +1,5 @@
-import React from 'react'
+
 import { useContext } from 'react';
-import { DataContext } from '../Contexts/DataContext';
 import { HeadContext } from '../Contexts/HeadContext';
 import { useProveedores } from '../Hooks/useProveedores';
 
