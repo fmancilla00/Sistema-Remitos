@@ -54,5 +54,5 @@ export const useMaterials = ({ ident }) => {
     }
   }
 
-    return { procesarCodigo, editable, codeState, cant, price, code, totalItem, setTotalItem, editDesc, calcularTotal, setEditable }
+    return { procesarCodigo, editable, codeState, cant, price, code, totalItem, setTotalItem, editDesc, calcularTotal }
 }

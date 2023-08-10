@@ -1,42 +1,45 @@
 import React, { useEffect, useState, useContext } from 'react'
 import ListaProveedores from './ListaProveedores'
 import { DataContext } from '../Contexts/DataContext';
+import { HeadContext } from '../Contexts/HeadContext';
 
 
 export default function Encabezado() {
   
-  const { watch, register, infoHead, formatearRemito, handleUbi, ubiIndex, setearProveedor, toggleCodigos } = useContext(DataContext);
+  const {cliente, remito, OC, fecha, ubiIndex, handleFechaChange, handleOCChange, handleRemitoChange, handleUbiIndexChange, fechaDefault, setearProveedor, infoHead, formatearRemito} = useContext(HeadContext)
 
-  
   setearProveedor();
 
-  const fechaDefault = new Date().toISOString().split('T')[0];
-  
+  console.log(ubiIndex)
 
+  console.log(infoHead);
+ 
   return (
-    <div className=' container text-black flex flex-col justify-center items-center gap-4'>
+    <div className=' container text-black flex flex-col justify-center items-center gap-0 bg-slate-300 w-full h-[12vh] pt-3'>
       <div className='flex justify-center items-center gap-5'>
-        <ListaProveedores />
-          <input  {...register('head.remito')} required
-            className={ ( watch('head.remito') ? '' : 'border-2 border-b-red-600 outline-2 outline-red-600 ') + 'w-32 p-1 m-1 text-base rounded-sm'} onBlur={formatearRemito} type="text" placeholder='Remito N°' />
-          <input {...register('head.OC')} className={( watch('head.OC') ? '' : ' border-2 border-b-amber-500 outline-2 outline-amber-500 ') +  'p-1 m-1 rounded-sm w-36'} type="text" placeholder='Orden de Compra' />
-        <label>Ubicación: 
-          <select className='p-1 m-1 bg-white rounded-sm w-52' {...register('head.ubiIndex')} onChange={handleUbi}>{infoHead.ubicacion && infoHead.ubicacion.map((ubi, index) => {
+        <label className='relative'>
+          <span className='absolute text-xs bottom-10 ml-2'>Cliente:</span>  
+          <ListaProveedores />
+        </label>
+        <label className='relative'>
+          <span className='absolute text-xs bottom-10 ml-2'>Remito:</span> 
+          <input value={remito} required
+            className={ (remito ? '' : 'border-2 border-b-red-600 outline-2 outline-red-600 ') + 'w-32 p-1 m-1 text-base rounded-sm'} onBlur={formatearRemito} type="text" placeholder='1234' onChange={handleRemitoChange} />
+        </label>
+        <label className='relative'>
+          <span className='absolute text-xs bottom-10 ml-2'>Orden de Compra:</span>
+          <input value={OC} className={(OC ? '' : ' border-2 border-b-amber-500 outline-2 outline-amber-500 ') + 'p-1 m-1 rounded-sm w-36'} type="text" onChange={handleOCChange}  />
+        </label>
+        <label className='relative'>
+          <span className='absolute text-xs bottom-10 ml-2'>Ubicación:</span> 
+          <select defaultValue={0} value={ubiIndex} className='p-1 m-1 bg-white rounded-sm w-52 h-8' onChange={handleUbiIndexChange}>{infoHead.ubicacion && infoHead.ubicacion.map((ubi, index) => {
             return <option  value={index} key={ubi.direccion}>{ubi.localidad}, {ubi.direccion}</option>
           })}</select>
         </label>
-        <input type="date" className='p-1 m-1 bg-white rounded-sm' {...register('head.fecha', { value: fechaDefault })} />
-        <label className='flex items-center justify-center'>
-          Usar códigos
-          <input className='m-1' type="checkbox" defaultChecked={true} onChange={toggleCodigos}/>
+        <label className='relative'>
+          <span className='absolute text-xs bottom-10 ml-2'>Fecha:</span>
+          <input type="date" className='p-1 m-1 bg-white rounded-sm' value={fecha} defaultValue={fechaDefault} onChange={handleFechaChange} />
         </label>
-      </div>
-      <div className='flex items-center  justify-around  p-1 w-full gap-5'>
-        <h4> <strong>Domicilio:</strong> {infoHead.ubicacion && ubiIndex && infoHead.ubicacion[ubiIndex].direccion}</h4>
-        <h4><strong>Localidad:</strong> {infoHead.ubicacion && ubiIndex && infoHead.ubicacion[ubiIndex].localidad}</h4>
-        <h4><strong>CUIT:</strong> {infoHead.cuit && infoHead.cuit}</h4>
-        <h4><strong>Teléfono:</strong> {infoHead.tel && infoHead.tel}</h4>
-        <h4><strong>N° Cliente:</strong> {infoHead.numCliente && infoHead.numCliente}</h4>
       </div>
     </div>
   )

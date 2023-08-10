@@ -16,6 +16,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
 }
 
 input::-webkit-outer-spin-button,
@@ -27,6 +28,14 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+*::-webkit-scrollbar{
+  width: 6px;
+}
+
+*::-webkit-scrollbar-thumb{
+  background-color: slategrey;
 }
 
 

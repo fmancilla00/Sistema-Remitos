@@ -13,50 +13,121 @@ export const DataContext = createContext();
 
 
 export const DataContextProvider = ({ children }) => {
-  const [datos, setDatos] = useState(null);
-  const [total, setTotal] = useState(0);
-  const [ids, setIds] = useState([])
-  
   
   const [infoHead, setInfoHead] = useState({});
   const [ubiIndex, setUbiIndex] = useState('0');
+  const [mats, setMats] = useState([])
+  const [total, setTotal] = useState('')
+  const [print, setPrint] = useState(false)
 
-  const [usaCodigo, setUsaCodigo] = useState(true);
-  
-  
-  
-  const { register, handleSubmit, unregister, setValue, getValues, watch, reset } = useForm();
-  
-  
-  const addId = () => {
-    const newMat = uuidv4()
-    setIds([...ids, newMat])
+  const calcularTotal = () => {
+    let res = 0;
+    mats.forEach(mat => { res += Number(mat.precio) * Number(mat.cantidad) })
+    setTotal(String(res))
   }
-  
-  const deleteMaterial = (ident) => {
-    const { PRECIO, CODIGO, DESC, CANT } = ObtenerConstantes(ident)
-    
-    const newMats = ids.filter((mat) => mat !== ident)
-    setTotal(total - Number((getValues(`${ident}.precio`)) * Number(getValues(`${ident}.cantidad`))));
-    unregister(CODIGO)
-    unregister(DESC)
-    unregister(CANT)
-    unregister(PRECIO)
-    setIds(newMats);
-  }
-  
-  const navigate = useNavigate();
 
-  const procesarDatos = data => {
-    setDatos(data);
-    navigate('/imprimir', {
-      state: {
-        datos: data,
-        infoHead,
-        ubiIndex
+  const handleConfirm = () => { 
+    setPrint(!print)
+  }
+
+  useEffect(calcularTotal, [mats])
+  
+  const updateMats = (codigo, desc) => {
+    const indices = getAllIndexes(mats, codigo)
+    if (indices.length > 0) {
+      setMats(prevState => {
+        const newMats = [...prevState]
+        indices.forEach(idx => { newMats[idx].desc = desc })
+        return newMats
+      })
+    }
+  }
+
+  const getAllIndexes = (arr, val) => {
+    const indices = [];
+    for (let i = 0; i < mats.length; i++) {
+      if (arr[i].codigo === val) {
+        indices.push(i);
       }
+    }
+    return indices;
+  }
+
+  const eliminarMaterial = ident => {
+    const newMats = mats.filter(mat => mat.id !== ident)
+    setMats(newMats)
+  }
+
+  const cambiarValor = (valor, id, nombre) => {
+    setMats(prevState => {
+      const idx = prevState.findIndex(elem => elem.id == id)
+      const field = nombre.split('-')[0]
+      prevState[idx][field] = valor
+      if (field === 'precio' || 'cantidad' || 'iva') {
+        calcularTotal()
+      }
+      return prevState
     })
   }
+
+  
+  console.log(mats);
+
+  const agregarMaterial = (cantidad, codigo, desc, precio, iva) => {
+    const newMat = {
+      id: crypto.randomUUID(),
+      cantidad,
+      codigo,
+      desc,
+      precio,
+      iva
+    }
+    setMats(prevMats => [...prevMats, newMat])
+  }
+
+  const limpiarMateriales = () => { 
+    setMats([])
+  }
+
+  const clonarMaterial = (ident) => { 
+    const idx = mats.findIndex(elem => elem.id == ident)
+    const { codigo, cantidad, desc, precio } = mats[idx]
+    agregarMaterial(cantidad, codigo, desc, precio)
+  }
+  
+  console.log(JSON.stringify(mats));
+
+  const swapUp = (ident) => { 
+    setMats(prevState => { 
+      const idx = mats.findIndex(elem => elem.id == ident)
+      if (idx > 0) {
+        const newMats = [...prevState]
+        const saved = newMats[idx - 1]
+        newMats[idx-1] = newMats[idx]
+        newMats[idx] = saved
+        return newMats
+      }
+      return prevState
+    })
+  }
+
+  const swapDown = (ident) => { 
+    setMats(prevState => {
+      const idx = mats.findIndex(elem => elem.id == ident)
+      if (idx < mats.length - 1) {
+        const newMats = [...prevState]
+        const saved = newMats[idx + 1]
+        newMats[idx+1] = newMats[idx]
+        newMats[idx] = saved
+        return newMats
+      }
+      return prevState
+    })
+  }
+
+
+  const { register, handleSubmit, unregister, setValue, getValues, watch, reset } = useForm();
+  
   
   const handleSelect = (e) => {
     setUbiIndex('0')
@@ -70,56 +141,15 @@ export const DataContextProvider = ({ children }) => {
     setValue('head.ubiIndex', e.target.value)
   }
 
-
-  const formatearRemito = (e) => {
-    let newVal = formatear(getValues('head.remito'));
-    setValue('head.remito', newVal);
-  }
-
   const selected = watch('head.empresa')
 
-  const setearProveedor = () => {
-    useEffect(() => {
-      const provs = obtenerObjetoProveedores(selected);
-      if (provs != null) {
-        setInfoHead(provs);
-      }
-
-    }, [selected])
-  }
-
-  const reiniciarRemito = () => {
-    setInfoHead({});
-    reset();
-    if (datos !== null) {
-      setIds([]);
-    } else {
-      const codes = ids.slice(1);
-      codes.forEach(code => { deleteMaterial(code) })
-      setIds(addMaterials(9))
-    }
-    setTotal(0);
-    setDatos(null);
-    setUbiIndex(0);
-    setUsaCodigo(true);
-  }
-
-  const addInitialIds = () => {
-    if (datos === null) {
-      useEffect(() => {
-        reiniciarRemito();
-      },
-        [])
-    }
-  }
-
-  const toggleCodigos = () => { 
-    setUsaCodigo(!usaCodigo)
+  const procesarDatos = (e) => {
+    console.log('works');
   }
 
   return (
     
-    <DataContext.Provider value={{ datos, total, setTotal, ids, addInitialIds, addId, register, handleSubmit, unregister, setValue, getValues, watch, deleteMaterial, procesarDatos, infoHead, handleSelect, handleUbi, formatearRemito, ubiIndex, setearProveedor, selected, reiniciarRemito, usaCodigo, toggleCodigos}}>
+    <DataContext.Provider value={{ register, handleSubmit, unregister, setValue, getValues, watch, infoHead, handleSelect, handleUbi, ubiIndex, selected, mats, agregarMaterial, eliminarMaterial, cambiarValor, total, swapUp, swapDown, updateMats, clonarMaterial, limpiarMateriales, procesarDatos, handleConfirm, print}}>
       { children }
     </DataContext.Provider>
   )

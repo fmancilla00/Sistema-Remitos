@@ -1,13 +1,27 @@
-# Sistema emisión de remitos
+# React + TypeScript + Vite
 
-App web para la confección e impresión de remitos sobre una plantilla preexistente. [Probarlo!](https://sistema-remitos.vercel.app/)
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-### Funcionalidades:
-- Registro de clientes
-- Confección e impresión de remitos
-- Posibilidad de utilizar códigos de materiales para autocompletar la descripción del mismo.
+Currently, two official plugins are available:
 
-### Limitaciones
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-- Tanto clientes como códigos y descripciones de materiales se almacenan en el navegador (local storage) por lo tanto su capacidad es bastante limitada. Sin embargo existe la posibilidad de ultilizar bases de datos en un futuro si esto llega a ser un problema.
-- No es responsive design ya su objetivo es ser utilizado únicamente en computadoras de escritorio.
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+
+- Configure the top-level `parserOptions` property like this:
+
+```js
+   parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+   },
+```
+
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
