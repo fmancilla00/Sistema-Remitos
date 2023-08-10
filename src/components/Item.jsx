@@ -1,6 +1,4 @@
 import { useEffect, useState, useContext, useRef } from "react"
-import { ChangeEvent } from "react"
-import { matType } from "./tipos"
 import { DataContext } from '../Contexts/DataContext';
 import { RxCrossCircled } from "react-icons/rx";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
@@ -11,13 +9,7 @@ import { FaRegClone } from "react-icons/fa6";
 
 
 
-interface ItemType { 
-  ident: string
-  mats: matType[]
-  idx: number
-}
-
-export default function Item({ ident, idx }: ItemType) {
+export default function Item({ ident, idx }) {
   const [cantidad, setCantidad] = useState('')
   const [codigo, setCodigo] = useState('')
   const [desc, setDesc] = useState('')
@@ -42,27 +34,27 @@ export default function Item({ ident, idx }: ItemType) {
   }
     , [mats])
 
-  const handleChangeCantidad = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeCantidad = (e) => {
     setCantidad(e.target.value)
     cambiarValor(e.target.value, ident, e.target.id)
   }
 
-  const handleChangeCodigo = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeCodigo = (e) => {
     setCodigo(e.target.value)
     cambiarValor(e.target.value, ident, e.target.id)
   }
 
-  const handleChangeDesc = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeDesc = (e) => {
     setDesc(e.target.value)
     cambiarValor(e.target.value, ident, e.target.id)
   }
 
-  const handleChangePrecio = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangePrecio = (e) => {
     setPrecio(e.target.value)
     cambiarValor(e.target.value, ident, e.target.id)
   }
 
-  const handleChangeIva = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeIva = (e) => {
     setIva(e.target.value)
     cambiarValor(e.target.value, ident, e.target.id)
   }

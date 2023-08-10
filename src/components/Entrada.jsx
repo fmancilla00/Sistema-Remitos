@@ -25,7 +25,7 @@ export default function Entrada({ addMat }) {
     }
   }
 
-  const handleSubmitPersonal = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmitPersonal = (e) => {
     e.preventDefault()
     addMat(cantidad, codigo, desc, precio, iva)
     setCantidad('')
@@ -43,23 +43,23 @@ export default function Entrada({ addMat }) {
   }
 
 
-  const handleChangeCantidad = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeCantidad = (e) => {
     setCantidad(e.target.value)
   }
 
-  const handleChangeCodigo = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeCodigo = (e) => {
     setCodigo(e.target.value)
   }
 
-  const handleChangeDesc = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeDesc = (e) => {
     setDesc(e.target.value)
   }
 
-  const handleChangePrecio = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangePrecio = (e) => {
     setPrecio(e.target.value)
   }
 
-  const handleCodeBlur = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleCodeBlur = (e) => {
     const val = e.target.value
     const obtenido = localStorage.getItem(val)
     if (obtenido) {
