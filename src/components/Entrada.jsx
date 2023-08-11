@@ -34,7 +34,7 @@ export default function Entrada({ addMat }) {
     setPrecio('')
     setStore(false)
     setIva('21')
-    if (store) {
+    if (store && codigo) {
       guardarItem()
       updateMats(codigo, desc)
     }
