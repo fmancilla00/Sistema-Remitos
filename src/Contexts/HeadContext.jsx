@@ -34,6 +34,14 @@ export const HeadContextProvider = ({ children }) => {
     setUbiIndex(e.target.value)
   }
 
+  const siguienteRemito = () => {
+    let newRemito = remito.split('-')[1]
+    newRemito = Number(newRemito) + 1
+    newRemito = formatear(String(newRemito))
+    setRemito(newRemito)
+    setOC('')
+  }
+
   const formatearRemito = (e) => {
     let newVal = formatear(remito)
     setRemito(newVal)
@@ -70,7 +78,7 @@ export const HeadContextProvider = ({ children }) => {
   }
     
   return (
-    <HeadContext.Provider value={ {cliente, remito, OC, fecha, ubiIndex, handleFechaChange, handleOCChange, handleRemitoChange, handleUbiIndexChange, fechaDefault, setearProveedor, handleClienteChange, infoHead, formatearRemito, limpiarEncabezado, dolar, handleChangeDolar}}>
+    <HeadContext.Provider value={ {cliente, remito, OC, fecha, ubiIndex, handleFechaChange, handleOCChange, handleRemitoChange, handleUbiIndexChange, fechaDefault, setearProveedor, handleClienteChange, infoHead, formatearRemito, limpiarEncabezado, dolar, handleChangeDolar, siguienteRemito, setDolar}}>
       { children }
     </HeadContext.Provider>
   )

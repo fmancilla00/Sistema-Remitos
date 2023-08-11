@@ -3,13 +3,20 @@ import { useContext } from 'react';
 import { AiOutlineClear as ClearIcon, AiOutlineCheckCircle as Confirm } from "react-icons/ai";
 import { MdOutlineRestartAlt as Restart } from "react-icons/md";
 import { HeadContext } from '../Contexts/HeadContext'
+import { formatear } from './services/formater';
 
 
 
 export default function SideBar() {
-  const { total, watch, limpiarMateriales, handleConfirm } = useContext(DataContext)
-  const { remito, cliente, OC, ubiIndex, infoHead, limpiarEncabezado, dolar, handleChangeDolar } = useContext(HeadContext)
+  const { total, limpiarMateriales, handleConfirm } = useContext(DataContext)
+  const { remito, cliente, OC, ubiIndex, infoHead, limpiarEncabezado, dolar, handleChangeDolar,  siguienteRemito, setDolar } = useContext(HeadContext)
   const { cuit, ubicacion, tel, numCliente } = infoHead 
+
+  const nuevoRemito = () => {
+    limpiarMateriales();
+    siguienteRemito();
+    setDolar(false)
+  }
 
   return (
     <aside className='flex flex-col items-start justify-between bg-slate-100 text-black shadow-slate-400  shadow w-1/6 min-h-screen p-3 z-10 py-5'>
@@ -50,7 +57,7 @@ export default function SideBar() {
             <label htmlFor="usar-dolar" className="ml-2 select-none text-base font-medium text-gray-900 dark:text-gray-300">Dólar</label>
           </div>
         <div className='flex items-center gap-2 justify-between w-full my-2 text-md'>
-          <button onClick={limpiarMateriales} className="rounded relative inline-flex group items-center justify-center px-3.5 py-2  cursor-pointer border-b-4 border-l-2 active:border-amber-600 active:shadow-none shadow-lg bg-gradient-to-tr from-amber-600 to-amber-500 border-amber-700 text-white gap-1 text-sm">
+          <button onClick={ nuevoRemito } className="rounded relative inline-flex group items-center justify-center px-3.5 py-2  cursor-pointer border-b-4 border-l-2 active:border-amber-600 active:shadow-none shadow-lg bg-gradient-to-tr from-amber-600 to-amber-500 border-amber-700 text-white gap-1 text-sm">
           Limpiar <ClearIcon/>
           </button>
           <button onClick={() => { limpiarEncabezado(); limpiarMateriales()}}  className="rounded relative inline-flex group items-center justify-center px-3.5 py-2  cursor-pointer border-b-4 border-l-2 active:border-red-600 active:shadow-none shadow-lg bg-gradient-to-tr from-red-600 to-red-500 border-red-700 text-white gap-1 text-sm">
