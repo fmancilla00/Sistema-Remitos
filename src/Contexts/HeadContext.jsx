@@ -71,6 +71,7 @@ export const HeadContextProvider = ({ children }) => {
     setRemito('')
     setInfoHead({})
     setFecha(fechaDefault)
+    setDolar(false)
   }
 
   const handleChangeDolar = (e) => { 
