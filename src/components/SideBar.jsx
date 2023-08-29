@@ -19,7 +19,7 @@ export default function SideBar() {
   }
 
   return (
-    <aside className='flex flex-col items-start justify-between bg-slate-100 text-black shadow-slate-400  shadow w-1/6 h-screen p-3 z-10 py-5'>
+    <aside className='flex flex-col items-start justify-between bg-slate-100 text-black shadow-slate-400  shadow w-1/6 h-screen p-3 z-10 py-5 overflow-clip'>
         <div className='flex flex-col text-sm  justify-around w-full gap-1.5'>
         <h3 className='font-bold p-1 text-base bg-slate-300 w-full'>Resumen</h3>
           <h4><strong>Cliente: </strong> {cliente === 'default' ? '' : cliente}</h4>
