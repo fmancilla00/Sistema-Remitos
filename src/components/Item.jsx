@@ -82,7 +82,7 @@ export default function Item({ ident, idx }) {
       <input onBlur={handleCodeBlur} onChange={handleChangeCodigo} autoComplete="off" value={codigo} id="codigo-input" className='w-24 p-1 m-0.5 rounded-sm' type="text" />
       <input onChange={handleChangeDesc} autoComplete="off" value={desc} id="desc-input" className='w-96 p-1 m-0.5 rounded-sm' type="text" />
       <input ref={precioRef} onChange={handleChangePrecio} autoComplete="off" value={precio} id="precio-input" className='p-1 pl-6 m-0.5 w-28 rounded-sm' type="number" step="0.01" />
-      <select onChange={handleChangeIva} id='iva-input' value={iva} className='p-0.5 m-0.5 h-6 bg-white text-xs rounded-sm'>
+      <select onChange={handleChangeIva} id='iva-input' value={iva} className='p-0.5 m-0.5 h-6 w-14 bg-white text-xs rounded-sm'>
         <option value="21">21%</option>
         <option value="10.5">10.5%</option>
       </select>

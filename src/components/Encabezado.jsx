@@ -15,7 +15,7 @@ export default function Encabezado() {
   console.log(infoHead);
  
   return (
-    <div className=' text-black flex flex-col justify-center items-center gap-0 bg-slate-300 w-full h-[10%]'>
+    <div className=' text-black flex flex-col justify-center items-center gap-0 bg-slate-300 w-full h-[12%]'>
       <div className='flex justify-center items-center gap-5'>
         <label className='relative'>
           <span className='absolute text-xs bottom-10 ml-2'>Cliente:</span>  

@@ -8,6 +8,7 @@ export default function Header() {
       <span className='w-24 p-1 m-0.5 rounded-sm'>Codigo</span>
       <span className='w-96 p-1 m-0.5 rounded-sm'>Descripción</span>
       <span className='p-1 pl-6 m-0.5 w-28 rounded-sm'> Precio unit.</span>
+      <span className='p-1 pl-6 m-0.5 w-14 rounded-sm'>IVA</span>
       <span className="p-1 m-0.5 w-24 rounded-sm text-center overflow-hidden">
          Subtotal
         </span>
