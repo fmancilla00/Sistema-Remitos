@@ -91,8 +91,8 @@ export const DataContextProvider = ({ children }) => {
 
   const clonarMaterial = (ident) => { 
     const idx = mats.findIndex(elem => elem.id == ident)
-    const { codigo, cantidad, desc, precio } = mats[idx]
-    agregarMaterial(cantidad, codigo, desc, precio)
+    const { codigo, cantidad, desc, precio, iva } = mats[idx]
+    agregarMaterial(cantidad, codigo, desc, precio, iva)
   }
   
   console.log(JSON.stringify(mats));
