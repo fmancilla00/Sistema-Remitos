@@ -18,12 +18,18 @@ export const DataContextProvider = ({ children }) => {
   const [ubiIndex, setUbiIndex] = useState('0');
   const [mats, setMats] = useState([])
   const [total, setTotal] = useState('')
+  const [totalImp, setTotalImp] = useState('')
   const [print, setPrint] = useState(false)
 
   const calcularTotal = () => {
     let res = 0;
-    mats.forEach(mat => { res += Number(mat.precio) * Number(mat.cantidad) })
+    let resImp = 0;
+    mats.forEach(mat => {
+      res += Number(mat.precio) * Number(mat.cantidad)
+      resImp += Number(mat.precio) * Number(mat.cantidad) * (1+ (Number(mat.iva) / 100));
+    })
     setTotal(String(res))
+    setTotalImp(String(resImp))
   }
 
   const handleConfirm = () => { 
@@ -149,7 +155,7 @@ export const DataContextProvider = ({ children }) => {
 
   return (
     
-    <DataContext.Provider value={{ register, handleSubmit, unregister, setValue, getValues, watch, infoHead, handleSelect, handleUbi, ubiIndex, selected, mats, agregarMaterial, eliminarMaterial, cambiarValor, total, swapUp, swapDown, updateMats, clonarMaterial, limpiarMateriales, procesarDatos, handleConfirm, print}}>
+    <DataContext.Provider value={{ register, handleSubmit, unregister, setValue, getValues, watch, infoHead, handleSelect, handleUbi, ubiIndex, selected, mats, agregarMaterial, eliminarMaterial, cambiarValor, total, swapUp, swapDown, updateMats, clonarMaterial, limpiarMateriales, procesarDatos, handleConfirm, print, totalImp}}>
       { children }
     </DataContext.Provider>
   )

@@ -3,13 +3,17 @@ import { useContext } from 'react';
 import { AiOutlineClear as ClearIcon, AiOutlineCheckCircle as Confirm } from "react-icons/ai";
 import { MdOutlineRestartAlt as Restart } from "react-icons/md";
 import { HeadContext } from '../Contexts/HeadContext'
-import { formatear } from './services/formater';
 
+const opcionesDeFormato = {
+  style: 'currency', // Indica que queremos formatearlo como moneda
+  currency: 'ARS',   // Especifica la moneda como pesos argentinos (código 'ARS')
+  minimumFractionDigits: 2 // Especifica la cantidad mínima de decimales
+};
 
 
 export default function SideBar() {
-  const { total, limpiarMateriales, handleConfirm } = useContext(DataContext)
-  const { remito, cliente, OC, ubiIndex, infoHead, limpiarEncabezado, dolar, handleChangeDolar,  siguienteRemito, setDolar } = useContext(HeadContext)
+  const { total, limpiarMateriales, handleConfirm, totalImp } = useContext(DataContext)
+  const { cliente, ubiIndex, infoHead, limpiarEncabezado, dolar, handleChangeDolar,  siguienteRemito, setDolar } = useContext(HeadContext)
   const { cuit, ubicacion, tel, numCliente } = infoHead 
 
   const nuevoRemito = () => {
@@ -29,8 +33,8 @@ export default function SideBar() {
           <h4><strong>Teléfono:</strong> {tel && tel}</h4>
           <h4><strong>N° Cliente:</strong> {numCliente && numCliente}</h4>
         <div className='text-base bg-green-200 p-1'>
-          <h4><strong>Total: </strong>${ parseFloat(total).toFixed(2) }</h4>
-          <h4 ><strong className='underline'>Total + IVA</strong>: ${ (parseFloat(total)*1.21).toFixed(2) }</h4>
+          <h4><strong>Total: </strong>{ parseFloat(total).toLocaleString('es-AR', opcionesDeFormato) }</h4>
+          <h4 ><strong className='underline'>Total + IVA</strong>: { (parseFloat(totalImp)).toLocaleString('es-AR', opcionesDeFormato) }</h4>
         </div>
       </div>
       <section className="flex items-start flex-col mb-4 gap-2 w-full">
