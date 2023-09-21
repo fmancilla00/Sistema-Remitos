@@ -23,14 +23,16 @@ export default function Form() {
     , [mats])
 
   return (
-    <div className='flex items-center relative w-full'>
+    <div className='flex items-center relative w-full min-h-screen'>
       <div className="h-screen relative flex items-center justify-start flex-col text-center w-full">
         <Link title="Volver" to='/' className=' hover:scale-110 transition absolute top-2 -left-2 m-6 text-2xl text-slate-800' ><BsFillArrowLeftCircleFill /></Link>
         <div className=' h-screen w-full flex flex-col items-center'>
           <Encabezado className="" />
-          <Header />
-          <ListaMateriales ref={refMateriales} />
-          <Entrada addMat={agregarMaterial} />
+          <div className='w-5/6 flex flex-col items-center justify-center'>
+            <Header />
+            <ListaMateriales ref={refMateriales} />
+            <Entrada addMat={agregarMaterial} />
+          </div>
         </div>
       </div>
       <SideBar />
