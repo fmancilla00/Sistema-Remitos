@@ -23,8 +23,8 @@ export default function SideBar() {
   }
 
   return (
-    <aside className='flex flex-col items-start justify-between bg-slate-100 text-black overflow-clip gap-4 p-1'>
-        <div className='flex flex-col text-sm  justify-around w-full gap-1.5 bg-white rounded-md p-4 shadow-md'>
+    <aside className='flex flex-col items-start justify-between bg-slate-100 text-black overflow-clip gap-4 p-1 h-full py-4'>
+        <div className='flex flex-col text-sm  justify-around w-full gap-1.5 bg-white rounded-md p-4 shadow-sm'>
           <h3 className='font-bold text-base w-full'>Resumen</h3>
           <h4><strong>Cliente: </strong> {cliente === 'default' ? '' : cliente}</h4>
           <h4><strong>CUIT:</strong> {cuit && cuit}</h4>
@@ -37,38 +37,38 @@ export default function SideBar() {
             <h4 className='p-2 bg-green-200 rounded-md' ><strong>Total + IVA</strong>: { (parseFloat(totalImp)).toLocaleString('es-AR', opcionesDeFormato) }</h4>
           </div>
       </div>
-      <section className="flex items-start flex-col gap-2 w-full">
-        <h3 className='font-bold p-1 bg-slate-200 w-full'>Ajustes</h3>
-          <div className='flex'>    
-            <input id="usar-codigos" defaultChecked={true} type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-            <label htmlFor="usar-codigos" className="ml-2 select-none text-sm font-medium text-gray-900 dark:text-gray-300">Usar códigos</label>
+      <section className="flex items-start flex-col gap-2 w-full shadow-sm bg-white p-4 rounded-md">
+        <h3 className='font-bold w-full'>Ajustes</h3>
+          <div className='flex items-center'>    
+            <input id="usar-codigos" defaultChecked={true} type="checkbox" value="" className="w-3.5 h-3.5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
+            <label htmlFor="usar-codigos" className="ml-2 select-none text-gray-900 dark:text-gray-300">Usar códigos</label>
           </div>
-        <div className='flex items-start justify-center'>    
-          <input id="fijar-fecha" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-          <label htmlFor="fijar-fecha" className="ml-2 select-none text-sm font-medium text-gray-900 dark:text-gray-300">Fijar fecha</label>   
+        <div className='flex items-center justify-center'>    
+          <input id="fijar-fecha" type="checkbox" value="" className="w-3.5 h-3.5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
+          <label htmlFor="fijar-fecha" className="ml-2 select-none text-gray-900 dark:text-gray-300">Fijar fecha</label>   
         </div>
-        <div className='flex items-start justify-center'>    
-          <input id="print-header" defaultChecked={true} type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-          <label htmlFor="print-header" className="ml-2 select-none text-sm font-medium text-gray-900 dark:text-gray-300">Imprimir Encabezado</label>   
+        <div className='flex items-center justify-center'>    
+          <input id="print-header" defaultChecked={true} type="checkbox" value="" className="w-3.5 h-3.5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
+          <label htmlFor="print-header" className="ml-2 select-none text-gray-900 dark:text-gray-300">Imprimir Encabezado</label>   
         </div>
       </section>
-      <section className='w-full flex flex-col gap-2'>
-        <h3 className='font-bold p-1 bg-slate-200 w-full'>Control</h3>
+      <section className='w-full flex flex-col bg-white p-4 rounded-md shadow-sm'>
+        <h3 className='font-bold w-full'>Control</h3>
         <div className='flex items-center  mt-1'>    
-          <input checked={dolar} id="usar-dolar" type="checkbox" defaultValue={dolar} value={dolar} onChange={handleChangeDolar} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-            <label htmlFor="usar-dolar" className="ml-2 select-none text-base font-medium text-gray-900 dark:text-gray-300">Dólar</label>
+          <input checked={dolar} id="usar-dolar" type="checkbox" defaultValue={dolar} value={dolar} onChange={handleChangeDolar} className="w-3.5 h-3.5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
+            <label htmlFor="usar-dolar" className="ml-2 select-none text-gray-900 dark:text-gray-300">Dólar</label>
           </div>
         <div className='flex items-center gap-2 justify-between w-full my-2 text-md'>
-          <button onClick={ nuevoRemito } className="rounded relative inline-flex group items-center justify-center px-3.5 py-2  cursor-pointer border-b-4 border-l-2 active:border-amber-600 active:shadow-none shadow-lg bg-gradient-to-tr from-amber-600 to-amber-500 border-amber-700 text-white gap-1 text-sm">
-          Limpiar <ClearIcon/>
+          <button onClick={ nuevoRemito } className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 transition-all">
+          Limpiar
           </button>
-          <button onClick={() => { limpiarEncabezado(); limpiarMateriales()}}  className="rounded relative inline-flex group items-center justify-center px-3.5 py-2  cursor-pointer border-b-4 border-l-2 active:border-red-600 active:shadow-none shadow-lg bg-gradient-to-tr from-red-600 to-red-500 border-red-700 text-white gap-1 text-sm">
-          Reiniciar <Restart/>
+          <button onClick={() => { limpiarEncabezado(); limpiarMateriales()}}  className=" transition-all text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+          Reiniciar
           </button>
-        </div>
-        <button onClick={handleConfirm} className="rounded relative inline-flex group items-center justify-center px-3.5 py-2 cursor-pointer border-b-4 border-l-2 active:teal-red-600 active:shadow-none shadow-lg bg-gradient-to-tr from-teal-600 to-teal-500 border-teal-700 text-white gap-1 w-full h-14 text-lg">
-        Confirmar <Confirm />
+        <button onClick={handleConfirm} className="transition-all text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+          Confirmar
         </button>
+        </div>
       </section>
     </aside>
   )

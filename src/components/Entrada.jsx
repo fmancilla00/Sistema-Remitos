@@ -78,7 +78,7 @@ export default function Entrada({ addMat }) {
 
   return (
     <div className=" text-black w-full rounded-md flex flex-col items-center justify-center shadow bg-white">
-      <form onSubmit={handleSubmitPersonal} autoComplete="off" className=" p-3 w-full flex justify-center gap-x-3">
+      <form onSubmit={handleSubmitPersonal} autoComplete="off" className=" p-3 w-full flex justify-center gap-x-5">
         <label htmlFor="cantidad-input" className="flex flex-col w-14 items-start">
           <span className="text-xs ml-2">Cant.</span>
           <input ref={inputRef} onChange={handleChangeCantidad} value={cantidad} id="cantidad-input" placeholder="12" className=' text-center p-2 m-0.5 w-full rounded-md border transition-all duration-200 focus:outline-none focus:border-gray-500 focus:ring focus:ring-gray-200 text-sm' type="number" />
