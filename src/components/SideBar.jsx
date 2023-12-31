@@ -24,7 +24,7 @@ export default function SideBar() {
 
   return (
     <aside className='flex flex-col items-start justify-between bg-slate-100 text-black overflow-clip gap-4 p-1 h-full py-4'>
-        <div className='flex flex-col text-sm  justify-around w-full gap-1.5 bg-white rounded-md p-4 shadow-sm'>
+        <div className='flex flex-col text-sm  justify-around w-full gap-1.5 bg-white rounded-md p-4 shadow'>
           <h3 className='font-bold text-base w-full'>Resumen</h3>
           <h4><strong>Cliente: </strong> {cliente === 'default' ? '' : cliente}</h4>
           <h4><strong>CUIT:</strong> {cuit && cuit}</h4>
@@ -37,7 +37,7 @@ export default function SideBar() {
             <h4 className='p-2 bg-green-200 rounded-md' ><strong>Total + IVA</strong>: { (parseFloat(totalImp)).toLocaleString('es-AR', opcionesDeFormato) }</h4>
           </div>
       </div>
-      <section className="flex items-start flex-col gap-2 w-full shadow-sm bg-white p-4 rounded-md">
+      <section className="flex items-start flex-col gap-2 w-full shadow bg-white p-4 rounded-md">
         <h3 className='font-bold w-full'>Ajustes</h3>
           <div className='flex items-center'>    
             <input id="usar-codigos" defaultChecked={true} type="checkbox" value="" className="w-3.5 h-3.5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
@@ -52,7 +52,7 @@ export default function SideBar() {
           <label htmlFor="print-header" className="ml-2 select-none text-gray-900 dark:text-gray-300">Imprimir Encabezado</label>   
         </div>
       </section>
-      <section className='w-full flex flex-col bg-white p-4 rounded-md shadow-sm'>
+      <section className='w-full flex flex-col bg-white p-4 rounded-md shadow'>
         <h3 className='font-bold w-full'>Control</h3>
         <div className='flex items-center  mt-1'>    
           <input checked={dolar} id="usar-dolar" type="checkbox" defaultValue={dolar} value={dolar} onChange={handleChangeDolar} className="w-3.5 h-3.5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />

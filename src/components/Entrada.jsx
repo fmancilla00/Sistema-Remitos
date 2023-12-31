@@ -98,7 +98,9 @@ export default function Entrada({ addMat }) {
             <input onChange={handleChangePrecio}  value={precio} id="precio-input-2" placeholder='1200' className='p-2 pl-6 m-0.5 w-full text-sm rounded-md border transition-all duration-200 focus:outline-none focus:border-gray-500 focus:ring focus:ring-gray-200' type="number" step="0.01" />
           </div>  
         </label>
-        <button  title="Agregar Material" className=" bg-white border-black hover:border-green-600 transition border-2 p-1 h-8 rounded w-8 flex justify-center items-center mb-1 self-end"><BiSolidSend/></button>
+        <button title="Agregar Material" className="transition-all text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 border-black border-2 p-1 h-8 rounded w-8 flex justify-center items-center mb-1 self-end">
+          <BiSolidSend />
+          </button>
         <label htmlFor="iva-input-2" className="flex flex-col w-16 text-start justify-center items-start relative">
           <span className="text-xs ml-2">IVA</span>
           <select value={iva} onChange={handleChangeIva} name="" id="iva-input-2" className='p-2 m-0.5 w-full text-xs bg-white rounded-md border transition-all duration-200 focus:outline-none focus:border-gray-500 focus:ring focus:ring-gray-200'>
