@@ -23,14 +23,14 @@ export default function Form() {
     */
 
   return (
-    <div className='min-h-screen bg-gray-100 p-4'>
-      <div className='flex justify-between gap-4'>  
-        <div className="flex-col w-3/4 p-4">
-          <header className='w-full flex relative'>
+    <div className='h-screen bg-gray-100 p-4'>
+      <div className='flex justify-between gap-4 h-full'>  
+        <div className="flex-col w-3/4 p-4 h-full ">
+          <header className='w-full flex relative h-[15%]'>
             <Link title="Volver" to='/' className=' hover:scale-110 absolute transition text-2xl text-slate-800' ><BsFillArrowLeftCircleFill /></Link>
             <Encabezado className="" />
           </header>
-          <div className='w-full flex flex-col items-center justify-between h-full '>
+          <div className='w-full flex flex-col items-centerjustify-between h-[85%] gap-4'>
             <Tabla />
             <Entrada  addMat={agregarMaterial} />
             {//<ListaMateriales ref={refMateriales} />
