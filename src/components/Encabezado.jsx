@@ -11,7 +11,7 @@ export default function Encabezado() {
   setearProveedor();
  
   return (
-    <div className=' text-black flex justify-between items-center w-full py-6'>
+    <div className=' text-black flex justify-between items-center w-[95%] py-2'>
         <label className='relative'>
           <span className='absolute text-xs bottom-12 ml-2'>Cliente:</span>  
           <ListaProveedores />
