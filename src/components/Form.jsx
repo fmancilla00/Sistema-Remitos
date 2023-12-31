@@ -15,12 +15,12 @@ export default function Form() {
   const { agregarMaterial, mats } = useContext(DataContext);
 
   const refMateriales = useRef(null)
-  /*
+  
   useEffect(() => {
     refMateriales.current.scrollTop = refMateriales.current.scrollHeight
   }
     , [mats])
-    */
+  
 
   return (
     <div className='h-screen bg-gray-100 p-4'>
@@ -31,12 +31,8 @@ export default function Form() {
             <Encabezado className="" />
           </header>
           <div className='w-full flex flex-col items-centerjustify-between h-[85%] gap-4'>
-            <Tabla />
+            <Tabla ref={refMateriales} />
             <Entrada  addMat={agregarMaterial} />
-            {//<ListaMateriales ref={refMateriales} />
-            //
-              //
-            }
             </div>
         </div>
         <aside className='w-1/4'>

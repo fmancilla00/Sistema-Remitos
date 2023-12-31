@@ -23,21 +23,21 @@ export default function SideBar() {
   }
 
   return (
-    <aside className='flex flex-col items-start justify-between bg-slate-100 text-black shadow-slate-400  shadow p-3 z-10 py-5 overflow-clip'>
-        <div className='flex flex-col text-sm  justify-around w-full gap-1.5'>
-        <h3 className='font-bold p-1 text-base bg-slate-300 w-full'>Resumen</h3>
+    <aside className='flex flex-col items-start justify-between bg-slate-100 text-black overflow-clip gap-4 p-1'>
+        <div className='flex flex-col text-sm  justify-around w-full gap-1.5 bg-white rounded-md p-4 shadow-md'>
+          <h3 className='font-bold text-base w-full'>Resumen</h3>
           <h4><strong>Cliente: </strong> {cliente === 'default' ? '' : cliente}</h4>
           <h4><strong>CUIT:</strong> {cuit && cuit}</h4>
           <h4> <strong>Domicilio:</strong> {ubicacion && ubicacion[ubiIndex].direccion}</h4>
           <h4><strong>Localidad:</strong> {ubicacion && ubicacion[ubiIndex].localidad}</h4>
           <h4><strong>Teléfono:</strong> {tel && tel}</h4>
           <h4><strong>N° Cliente:</strong> {numCliente && numCliente}</h4>
-        <div className='text-base bg-green-200 p-1'>
-          <h4><strong>Total: </strong>{ parseFloat(total).toLocaleString('es-AR', opcionesDeFormato) }</h4>
-          <h4 ><strong className='underline'>Total + IVA</strong>: { (parseFloat(totalImp)).toLocaleString('es-AR', opcionesDeFormato) }</h4>
-        </div>
+          <div className='text-base p-1 flex flex-col gap-2'>
+            <h4 className='p-2 bg-green-200 rounded-md'><strong>Total: </strong>{ parseFloat(total).toLocaleString('es-AR', opcionesDeFormato) }</h4>
+            <h4 className='p-2 bg-green-200 rounded-md' ><strong>Total + IVA</strong>: { (parseFloat(totalImp)).toLocaleString('es-AR', opcionesDeFormato) }</h4>
+          </div>
       </div>
-      <section className="flex items-start flex-col mb-4 gap-2 w-full">
+      <section className="flex items-start flex-col gap-2 w-full">
         <h3 className='font-bold p-1 bg-slate-200 w-full'>Ajustes</h3>
           <div className='flex'>    
             <input id="usar-codigos" defaultChecked={true} type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />

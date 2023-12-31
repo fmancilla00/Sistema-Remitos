@@ -78,30 +78,30 @@ export default function Entrada({ addMat }) {
 
   return (
     <div className=" text-black w-full rounded-md flex flex-col items-center justify-center shadow bg-white">
-      <form onSubmit={handleSubmitPersonal} autoComplete="off" className=" p-2 w-full flex justify-center gap-x-3">
+      <form onSubmit={handleSubmitPersonal} autoComplete="off" className=" p-3 w-full flex justify-center gap-x-3">
         <label htmlFor="cantidad-input" className="flex flex-col w-14 items-start">
           <span className="text-xs ml-2">Cant.</span>
-          <input ref={inputRef} onChange={handleChangeCantidad} value={cantidad} id="cantidad-input" placeholder="12" className=' text-center p-2 m-0.5 w-full rounded-sm text-sm' type="number" />
+          <input ref={inputRef} onChange={handleChangeCantidad} value={cantidad} id="cantidad-input" placeholder="12" className=' text-center p-2 m-0.5 w-full rounded-md border transition-all duration-200 focus:outline-none focus:border-gray-500 focus:ring focus:ring-gray-200 text-sm' type="number" />
         </label>
         <label htmlFor="cantidad-input" className="flex flex-col w-24 items-start">
           <span className="text-xs ml-2">Código</span>
-          <input onBlur={handleCodeBlur} onChange={handleChangeCodigo} value={codigo} id="cantidad-input" placeholder='A0001234' className='w-full p-2 m-0.5 text-sm rounded-sm' type="text" />
+          <input onBlur={handleCodeBlur} onChange={handleChangeCodigo} value={codigo} id="cantidad-input" placeholder='A0001234' className='w-full p-2 m-0.5 text-sm rounded-md border transition-all duration-200 focus:outline-none focus:border-gray-500 focus:ring focus:ring-gray-200' type="text" />
         </label>
         <label htmlFor="desc-input" className="flex flex-col w-96 items-start">
           <span className="text-xs ml-2">Descripción</span>
-          <input onChange={handleChangeDesc} value={desc} id="desc-input" placeholder='Lima Cuadrada' className='w-96 p-2 m-0.5 rounded-sm text-sm' type="text" />
+          <input onChange={handleChangeDesc} value={desc} id="desc-input" placeholder='Lima Cuadrada' className='w-96 p-2 m-0.5 text-sm rounded-md border transition-all duration-200 focus:outline-none focus:border-gray-500 focus:ring focus:ring-gray-200' type="text" />
         </label>
         <label htmlFor="precio-input-2" ref={precioRefEntry} className="flex flex-col w-24 items-start relative">
           <span className="text-xs ml-2">Precio unit.</span>
           <div className="relative w-full">
             <span className="absolute top-1/2 left-4 transform -translate-y-1/2 text-sm bg-slate">$</span>  
-            <input onChange={handleChangePrecio}  value={precio} id="precio-input-2" placeholder='1200' className='p-2 pl-6 m-0.5 w-full rounded-sm text-sm' type="number" step="0.01" />
+            <input onChange={handleChangePrecio}  value={precio} id="precio-input-2" placeholder='1200' className='p-2 pl-6 m-0.5 w-full text-sm rounded-md border transition-all duration-200 focus:outline-none focus:border-gray-500 focus:ring focus:ring-gray-200' type="number" step="0.01" />
           </div>  
         </label>
         <button  title="Agregar Material" className=" bg-white border-black hover:border-green-600 transition border-2 p-1 h-8 rounded w-8 flex justify-center items-center mb-1 self-end"><BiSolidSend/></button>
         <label htmlFor="iva-input-2" className="flex flex-col w-16 text-start justify-center items-start relative">
           <span className="text-xs ml-2">IVA</span>
-          <select value={iva} onChange={handleChangeIva} name="" id="iva-input-2" className='p-2 m-0.5 w-full rounded-sm text-xs'>
+          <select value={iva} onChange={handleChangeIva} name="" id="iva-input-2" className='p-2 m-0.5 w-full text-xs bg-white rounded-md border transition-all duration-200 focus:outline-none focus:border-gray-500 focus:ring focus:ring-gray-200'>
             <option value="21">21%</option>
             <option value="10.5">10.5%</option>
             </select>
