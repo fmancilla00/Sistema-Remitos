@@ -9,14 +9,9 @@ export default function Encabezado() {
   const {cliente, remito, OC, fecha, ubiIndex, handleFechaChange, handleOCChange, handleRemitoChange, handleUbiIndexChange, fechaDefault, setearProveedor, infoHead, formatearRemito} = useContext(HeadContext)
 
   setearProveedor();
-
-  console.log(ubiIndex)
-
-  console.log(infoHead);
  
   return (
-    <div className=' text-black flex flex-col justify-center items-center gap-0 bg-slate-300 w-full h-[12%]'>
-      <div className='flex justify-center items-center gap-5'>
+    <div className=' text-black flex justify-between items-center w-full py-6'>
         <label className='relative'>
           <span className='absolute text-xs bottom-10 ml-2'>Cliente:</span>  
           <ListaProveedores />
@@ -40,7 +35,6 @@ export default function Encabezado() {
           <span className='absolute text-xs bottom-10 ml-2'>Fecha:</span>
           <input type="date" className='p-1 m-1 bg-white rounded-sm' value={fecha} defaultValue={fechaDefault} onChange={handleFechaChange} />
         </label>
-      </div>
     </div>
   )
 }
