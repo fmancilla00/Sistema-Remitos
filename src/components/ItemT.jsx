@@ -18,7 +18,13 @@ export default function Item({ ident, idx }) {
   const precioRef = useRef(null)
   const { mats, eliminarMaterial, cambiarValor, swapUp, swapDown, updateMats, clonarMaterial } = useContext(DataContext)
   
-
+  const opcionesDeFormato = {
+    style: 'currency', // Indica que queremos formatearlo como moneda
+    currency: 'ARS',   // Especifica la moneda como pesos argentinos (código 'ARS')
+    minimumFractionDigits: 2 // Especifica la cantidad mínima de decimales
+  };
+  
+  
   useEffect(() => {
     const material = mats.filter(mat => { return mat.id === ident })[0]
     setCantidad(material.cantidad)
@@ -77,14 +83,14 @@ export default function Item({ ident, idx }) {
 
   return (
     <tr className="dark:bg-gray-800 bg-white">
-        <td className="px-4 py-2">
+        <td className="px-2 py-2">
           {String(idx + 1)}
         </td>
         <td className="px-4 py-2">
-          <input onChange={handleChangeCantidad} autoComplete="off" value={cantidad} id="cantidad-input" className=' p-1 px-2 rounded-md w-20 border transition-all duration-200 focus:outline-none focus:border-gray-500 focus:ring focus:ring-gray-200' type="number" />
+          <input onChange={handleChangeCantidad} autoComplete="off" value={cantidad} id="cantidad-input" className=' p-1 px-2 rounded-md w-14 border transition-all duration-200 focus:outline-none focus:border-gray-500 focus:ring focus:ring-gray-200' type="number" />
         </td>
       <td className="px-4 py-2">
-        <input onBlur={handleCodeBlur} onChange={handleChangeCodigo} autoComplete="off" value={codigo} id="codigo-input" className='p-1 px-2 rounded-md w-20 border transition-all duration-200 focus:outline-none focus:border-gray-500 focus:ring focus:ring-gray-200' type="text" />
+        <input onBlur={handleCodeBlur} onChange={handleChangeCodigo} autoComplete="off" value={codigo} id="codigo-input" className='p-1 px-2 rounded-md w-24 border transition-all duration-200 focus:outline-none focus:border-gray-500 focus:ring focus:ring-gray-200' type="text" />
       </td>
       <th scope="row" className="px-4 py-2 font-medium whitespace-nowrap dark:text-white ">
           <input onChange={handleChangeDesc} autoComplete="off" value={desc} id="desc-input" className='p-1 px-2 rounded-md border transition-all duration-200 focus:outline-none focus:border-gray-500 focus:ring focus:ring-gray-200' type="text" />
@@ -102,7 +108,8 @@ export default function Item({ ident, idx }) {
         </select>
       </td>
       <td className="px-4 py-2">
-        $ {Number(precio) * Number(cantidad)}
+        {
+          parseFloat(Number(precio) * Number(cantidad)).toLocaleString('es-AR', opcionesDeFormato)}
       </td>
       <td className="px-1 py-2 flex items-center justify-center">
         <div className="flex flex-col justify-center w-4 h-6 rounded-sm">

@@ -77,7 +77,7 @@ export default function Entrada({ addMat }) {
   
 
   return (
-    <div className=" text-black w-full rounded-md flex flex-col items-center justify-center shadow bg-white">
+    <div className=" text-gray-600 w-full rounded-md flex flex-col items-center justify-center shadow bg-white">
       <form onSubmit={handleSubmitPersonal} autoComplete="off" className=" p-3 w-full flex justify-center gap-x-5">
         <label htmlFor="cantidad-input" className="flex flex-col w-14 items-start">
           <span className="text-xs ml-2">Cant.</span>
@@ -98,7 +98,7 @@ export default function Entrada({ addMat }) {
             <input onChange={handleChangePrecio}  value={precio} id="precio-input-2" placeholder='1200' className='p-2 pl-6 m-0.5 w-full text-sm rounded-md border transition-all duration-200 focus:outline-none focus:border-gray-500 focus:ring focus:ring-gray-200' type="number" step="0.01" />
           </div>  
         </label>
-        <button title="Agregar Material" className="transition-all text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 border-black border-2 p-1 h-8 rounded w-8 flex justify-center items-center mb-1 self-end">
+        <button title="Agregar Material" className="transition-all text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 border-black border-2 p-1 h-8 rounded-md w-8 flex justify-center items-center mb-1 self-end">
           <BiSolidSend />
           </button>
         <label htmlFor="iva-input-2" className="flex flex-col w-16 text-start justify-center items-start relative">
