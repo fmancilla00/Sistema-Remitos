@@ -30,21 +30,38 @@ export default function Proveedores() {
 
   return (
     <div className='min-h-screen text-gray-900 flex align-middle justify-center flex-col text-center'>
-
       <Link to='/' title="Volver" className=' hover:-translate-x-0.5 transition absolute top-0 left-0 m-6 text-3xl' ><BsFillArrowLeftCircleFill/></Link>
-      <h1 className='text-xl font-bold m-6'>Nuevo proveedor:</h1>
-      <div className=''>
-        <form onSubmit={handleSubmit(onSubmit)} className=' mb-10 rounded-md bg-slate-400 w-96 mx-auto text-slate-700 flex flex-col gap-5 p-10 items-center justify-center'>
-          <input autoFocus {...register('razon')} className=' w-64 p-2 rounded-sm' required type="text" placeholder='Razon Social *'/>
-          <input {...register('cuit')} className=' w-64 p-2 rounded-sm' required type="text" placeholder='CUIT *' />
+      <div className='min-h-screen flex items-center justify-center'>
+        <form onSubmit={handleSubmit(onSubmit)} className=' mb-10 rounded-md bg-white w-1/3 mx-auto  flex flex-col gap-3 p-10 items-center justify-center shadow'>
+          <h1 className='text-left text-xl  font-medium m-4 border-b py-2 border-b-gray-400 w-64'>Nuevo proveedor:</h1>
+          <label htmlFor="razon" className='max-w-sm mx-auto'>
+            <span className='block mb-1 text-sm font-medium text-gray-900 dark:text-white text-left'>Razon Social *</span>
+            <input id='razon' autoFocus {...register('razon')} className=' w-64 p-2 bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 transition' required type="text" placeholder=''/>
+          </label>
+          <label htmlFor="razon" className='max-w-sm mx-auto'>
+            <span className='block mb-1 text-sm font-medium text-gray-900 dark:text-white text-left'>
+              CUIT *
+            </span>
+            <input {...register('cuit')} className='w-64 p-2 bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 transition' required type="text" />
+          </label>
+          
           {
             fields.map(({ id }, index) => {
               return (
-                <div className=' relative p-2  pt-0 rounded-md flex flex-col gap-2' key={id}>
+                <div className=' relative p-2  pt-0 rounded-md flex flex-col gap-3' key={id}>
                   <div className='  relative rounded-md flex flex-col gap-2 px-2'>
-                    <input className='p-2 w-64' placeholder='Domicilio *' type="text" required {...register(`ubicacion.${index}.direccion`)}></input>
-                    <span className='absolute w-1 h-6 inline-block top-1/3 z-0 left-1/2 right-1/2 bg-white text-white'></span>
-                    <input className='p-2 w-64' placeholder='Localidad *' type="text" required {...register(`ubicacion.${index}.localidad`)}></input>
+                    <label htmlFor="razon" className='max-w-sm mx-auto'>
+                      <span className='block mb-1 text-sm font-medium text-gray-900 dark:text-white text-left'>
+                        Domicilio *
+                      </span>
+                      <input className='w-64 p-2 bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 transition' type="text" required {...register(`ubicacion.${index}.direccion`)}></input>
+                    </label>
+                    <label htmlFor="razon" className='max-w-sm mx-auto'>
+                      <span className='block mb-1 text-sm font-medium text-gray-900 dark:text-white text-left'>
+                        Localidad *
+                      </span>
+                      <input className='w-64 p-2 bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 transition' type="text" required {...register(`ubicacion.${index}.localidad`)}></input>
+                    </label>
                   </div>
                   {
                     fields.length > 1
@@ -58,10 +75,22 @@ export default function Proveedores() {
                   )
                 })
               }
-              <button title='Agregar dirección y localidad' className='relative uppercase bottom-4 h-1 text-blue-600' type='button' onClick={() => append({})}><RiAddCircleFill className='inline w-6 h-6 bg-white rounded-full text-xl text-center border-white border-2'/></button>
-              <input {...register('tel')} className=' w-64 p-2' type="tel" placeholder='Teléfono' />
-              <input {...register('numCliente')} className=' w-64 p-2' type="tel" placeholder='N° Proveedor' />
-          <button type='submit' className='p-3 hover:bg-cyan-900 bg-cyan-800 text-white w-64 font-medium uppercase rounded-sm transition' >Registrar</button>
+          <button title='Agregar dirección y localidad' className='relative uppercase bottom-4 h-1 text-blue-600' type='button' onClick={() => append({})}><RiAddCircleFill className='inline w-6 h-6 bg-white rounded-full text-xl text-center border-white border-2' /></button>
+          <div className='flex w-64 gap-3'>
+            <label htmlFor="razon" className='w-[60%]'>
+              <span className='block mb-1 text-sm font-medium text-gray-900 dark:text-white text-left'>
+                Teléfono
+              </span>
+              <input {...register('tel')} className=' w-full p-2 bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 transition' type="tel" />
+            </label>
+            <label htmlFor="razon" className='w-[40%]'>
+              <span className='block mb-1 text-sm font-medium text-gray-900 dark:text-white text-left'>
+                N° Proveedor
+              </span>
+              <input {...register('numCliente')} className=' w-full p-2 bg-gray-50 border border-gray-300 outline-none text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 transition' type="tel" />
+            </label>
+          </div>
+          <button type='submit' className='p-5 m-6 text-white w-64 font-medium transition ext-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-lg dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700' >Registrar</button>
         </form>
       </div>
     </div>
