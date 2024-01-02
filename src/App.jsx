@@ -7,7 +7,7 @@ import Printable from './components/Printable';
 
 function App() {
   return (
-      <div className="bg-slate-200">
+      <div className="bg-gray-100">
         <Routes>
           <Route path="/" element={<MainMenu />} />
           <Route path="/proveedores" element={<Proveedores />} />
