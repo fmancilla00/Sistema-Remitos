@@ -8,6 +8,7 @@ import { TiDelete } from "react-icons/ti";
 import { RiAddCircleFill } from "react-icons/ri";
 
 
+
 export default function Proveedores() {
 
   const { register, handleSubmit, reset, control } = useForm({ mode: 'all' }); 
